@@ -24,6 +24,7 @@ const SESSION_KEY = "mock-test";
 const TOTAL_QUESTIONS = 50;
 const QUESTIONS_PER_SUBJECT = 10;
 const DURATION_MS = 60 * 60 * 1000;
+const OPTION_KEYS = ["A", "B", "C", "D"];
 
 function formatTime(milliseconds: number) {
   const totalSeconds = Math.max(0, Math.floor(milliseconds / 1000));
@@ -143,40 +144,40 @@ export default function MockTestPage() {
   }
 
   return (
-    <main className="min-h-screen bg-background px-4 py-5 text-slate-100 sm:px-6 sm:py-8">
-      <div className="mx-auto flex w-full max-w-3xl flex-col gap-5">
-        <header className="flex flex-col gap-2 border-b border-slate-800/80 pb-4">
+    <main className="min-h-screen bg-background px-[22px] py-8 text-zinc-100">
+      <div className="mx-auto flex w-full max-w-md flex-col gap-5">
+        <header className="sticky top-0 z-10 -mx-[22px] flex flex-col gap-2 border-b border-white/[0.06] bg-background px-[22px] pb-4 pt-4">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">
+              <p className="text-[11px] font-medium uppercase tracking-[0.1em] text-zinc-400">
                 Mock Test
               </p>
-              <h1 className="text-xl font-semibold leading-tight sm:text-2xl">
+              <h1 className="text-xl font-medium leading-tight">
                 Full-length MCQ Exam
               </h1>
             </div>
             <Link
               href="/"
-              className="rounded-md border border-slate-700/80 bg-slate-950/40 px-3 py-2 text-sm text-slate-300 transition hover:border-accent hover:text-accent"
+              className="rounded-lg border border-white/[0.06] px-3 py-2 text-sm text-zinc-400 transition hover:border-white/[0.12] hover:text-zinc-100"
             >
               Home
             </Link>
           </div>
-          <p className="text-sm text-slate-400">
+          <p className="text-sm text-zinc-400">
             50 questions • 10 per subject • 1 hour timer
           </p>
         </header>
 
         {!session ? (
-          <section className="rounded-lg border border-slate-800/80 bg-panel p-4 shadow-glow">
-            <p className="text-sm leading-6 text-slate-400">
+          <section className="rounded-xl border border-white/[0.06] bg-panel p-5">
+            <p className="text-sm leading-[1.55] text-zinc-400">
               Start the mock test to get a randomized set of questions in the
               official subject order.
             </p>
             <div className="mt-4 flex flex-wrap gap-3">
               <button
                 onClick={startNewSession}
-                className="w-full rounded-md bg-accent px-4 py-3 text-sm font-semibold text-white shadow-glow transition hover:bg-accentSoft sm:w-auto"
+                className="w-full rounded-[10px] bg-accent px-4 py-3.5 text-sm font-semibold text-accentInk transition hover:opacity-90 sm:w-auto"
               >
                 Start Mock Test
               </button>
@@ -184,20 +185,20 @@ export default function MockTestPage() {
           </section>
         ) : submitted ? (
           <section className="flex flex-col gap-6">
-            <div className="rounded-lg border border-slate-800/80 bg-panel p-4 shadow-glow sm:p-5">
+            <div className="rounded-xl border border-white/[0.06] bg-panel p-5">
               <div className="flex flex-wrap items-center justify-between gap-4">
                 <div>
-                  <h2 className="text-xl font-semibold">Results</h2>
-                  <p className="mt-1 text-sm text-slate-300">
+                  <h2 className="text-xl font-medium">Results</h2>
+                  <p className="mt-1 text-sm text-zinc-300">
                     Score: {scoreSummary?.correct} / {TOTAL_QUESTIONS}
                   </p>
-                  <p className="text-sm text-slate-500">
+                  <p className="text-sm text-zinc-600">
                     Correct: {scoreSummary?.correct} • Wrong: {scoreSummary?.wrong}
                   </p>
                 </div>
                 <button
                   onClick={startNewSession}
-                  className="w-full rounded-md border border-slate-700/80 bg-slate-950/40 px-4 py-3 text-sm font-medium text-slate-300 transition hover:border-accent hover:text-accent sm:w-auto"
+                  className="w-full rounded-[10px] border border-white/[0.06] bg-panel px-4 py-3.5 text-sm font-medium text-zinc-100 transition hover:border-white/[0.12] sm:w-auto"
                 >
                   Start New Mock Test
                 </button>
@@ -213,23 +214,23 @@ export default function MockTestPage() {
                 return (
                   <div
                     key={id}
-                    className="rounded-lg border border-slate-800/80 bg-panel p-4 shadow-glow sm:p-5"
+                    className="rounded-xl border border-white/[0.06] bg-panel p-5"
                   >
-                    <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-semibold uppercase tracking-wider text-slate-500">
+                    <div className="flex flex-wrap items-center justify-between gap-2 text-[11px] font-medium uppercase tracking-[0.1em] text-zinc-600">
                       <span>
                         {index + 1}. {question.subject}
                       </span>
                       <span
                         className={`rounded-md border px-2 py-1 text-[10px] ${
                           isCorrect
-                            ? "border-emerald-500 text-emerald-300"
-                            : "border-rose-500 text-rose-300"
+                            ? "border-correct text-correct"
+                            : "border-incorrect text-incorrect"
                         }`}
                       >
                         {isCorrect ? "Correct" : "Wrong"}
                       </span>
                     </div>
-                    <h3 className="mt-4 text-base font-semibold leading-7 text-slate-100">
+                    <h3 className="mt-4 text-[15px] font-medium leading-[1.45] text-zinc-100">
                       {question.stem}
                     </h3>
                     <div className="mt-4 grid gap-2 text-sm">
@@ -237,27 +238,37 @@ export default function MockTestPage() {
                         const isAnswer = optionIndex === question.answer;
                         const isSelected = optionIndex === selected;
                         const optionStyles = isAnswer
-                          ? "border-emerald-400/70 bg-emerald-500/15 text-emerald-100 shadow-glow backdrop-blur-md"
+                          ? "border-correct bg-correct/10 text-zinc-100"
                           : isSelected
-                          ? "border-rose-400/70 bg-rose-500/15 text-rose-100 shadow-glow backdrop-blur-md"
-                          : "border-white/10 bg-white/[0.06] text-slate-100 shadow-glow backdrop-blur-md";
+                          ? "border-incorrect bg-incorrect/10 text-zinc-100"
+                          : "border-white/[0.06] bg-panel text-zinc-100";
+                        const markerStyles = isAnswer
+                          ? "border-correct bg-correct text-background"
+                          : isSelected
+                          ? "border-incorrect bg-incorrect text-background"
+                          : "border-white/[0.12] text-zinc-400";
                         return (
                           <div
                             key={option}
-                            className={`rounded-lg border px-3 py-2 leading-6 ${optionStyles}`}
+                            className={`flex items-start gap-3 rounded-[10px] border px-4 py-3.5 text-[15px] leading-[1.45] ${optionStyles}`}
                           >
-                            {option}
+                            <span
+                              className={`flex h-[26px] w-[26px] shrink-0 items-center justify-center rounded-md border font-mono text-[11px] font-medium ${markerStyles}`}
+                            >
+                              {OPTION_KEYS[optionIndex]}
+                            </span>
+                            <span className="pt-0.5">{option}</span>
                           </div>
                         );
                       })}
                     </div>
-                    <p className="mt-4 text-sm text-slate-300">
-                      <span className="font-semibold text-emerald-300">
+                    <p className="mt-4 text-sm text-zinc-300">
+                      <span className="font-semibold text-correct">
                         Correct answer:
                       </span>{" "}
                       {question.options[question.answer]}
                     </p>
-                    <p className="mt-2 text-sm leading-6 text-slate-400">
+                    <p className="mt-2 text-sm leading-[1.55] text-zinc-400">
                       {question.explanation}
                     </p>
                   </div>
@@ -266,17 +277,17 @@ export default function MockTestPage() {
             </div>
           </section>
         ) : (
-          <section className="rounded-lg border border-slate-800/80 bg-panel p-4 shadow-glow sm:p-5">
-            <div className="flex flex-wrap items-center justify-between gap-3 text-xs font-semibold uppercase tracking-wider text-slate-500">
+          <section className="rounded-xl border border-white/[0.06] bg-panel p-5">
+            <div className="flex flex-wrap items-center justify-between gap-3 text-[11px] font-medium uppercase tracking-[0.1em] text-zinc-600">
               <span>
                 Question {session.currentIndex + 1} / {session.questionIds.length}
               </span>
-              <span className="rounded-md border border-slate-700/80 bg-slate-950/40 px-3 py-2 text-[10px] text-slate-300">
+              <span className="rounded-md border border-white/[0.06] bg-surface2 px-3 py-2 font-mono text-[10px] text-zinc-400">
                 {formatTime(timeLeftMs)} remaining
               </span>
             </div>
 
-            <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-slate-800">
+            <div className="mt-3 h-0.5 w-full overflow-hidden rounded-sm bg-white/[0.06]">
               <div
                 className="h-full bg-accent transition-all"
                 style={{
@@ -290,10 +301,10 @@ export default function MockTestPage() {
 
             {currentQuestion && (
               <div className="mt-6">
-                <div className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">
+                <div className="text-[11px] font-medium uppercase tracking-[0.1em] text-zinc-600">
                   {currentQuestion.subject} — {SUBJECT_LABELS[currentQuestion.subject]}
                 </div>
-                <h2 className="mt-3 text-base font-semibold leading-7 text-slate-100 sm:text-lg">
+                <h2 className="mt-3 text-[21px] font-medium leading-[1.32] text-zinc-100">
                   {currentQuestion.stem}
                 </h2>
 
@@ -311,13 +322,22 @@ export default function MockTestPage() {
                             },
                           })
                         }
-                        className={`w-full rounded-lg border px-4 py-3 text-left text-sm leading-6 shadow-glow backdrop-blur-md transition hover:border-accent ${
+                        className={`flex w-full items-start gap-3 rounded-[10px] border px-4 py-3.5 text-left text-[15px] leading-[1.45] transition hover:border-white/[0.12] ${
                           isSelected
-                            ? "border-accent/80 bg-blue-500/15 text-slate-100"
-                            : "border-white/10 bg-white/[0.06] text-slate-100"
+                            ? "border-accent bg-accentSoft text-zinc-100"
+                            : "border-white/[0.06] bg-panel text-zinc-100"
                         }`}
                       >
-                        {option}
+                        <span
+                          className={`flex h-[26px] w-[26px] shrink-0 items-center justify-center rounded-md border font-mono text-[11px] font-medium ${
+                            isSelected
+                              ? "border-accent bg-accent text-accentInk"
+                              : "border-white/[0.12] text-zinc-400"
+                          }`}
+                        >
+                          {OPTION_KEYS[optionIndex]}
+                        </span>
+                        <span className="pt-0.5">{option}</span>
                       </button>
                     );
                   })}
@@ -331,14 +351,14 @@ export default function MockTestPage() {
                       })
                     }
                     disabled={session.currentIndex === 0}
-                    className="rounded-md border border-slate-700/80 bg-slate-950/40 px-4 py-3 text-sm font-medium text-slate-300 transition hover:border-accent hover:text-accent disabled:cursor-not-allowed disabled:opacity-40"
+                    className="rounded-[10px] border border-white/[0.06] bg-panel px-4 py-3.5 text-sm font-medium text-zinc-100 transition hover:border-white/[0.12] disabled:cursor-not-allowed disabled:opacity-40"
                   >
                     Previous
                   </button>
                   <div className="flex flex-wrap gap-3">
                     <button
                       onClick={handleSubmit}
-                      className="rounded-md border border-slate-700/80 bg-slate-950/40 px-4 py-3 text-sm font-medium text-slate-300 transition hover:border-accent hover:text-accent"
+                      className="rounded-[10px] border border-white/[0.06] bg-panel px-4 py-3.5 text-sm font-medium text-zinc-100 transition hover:border-white/[0.12]"
                     >
                       Submit
                     </button>
@@ -354,7 +374,7 @@ export default function MockTestPage() {
                       disabled={
                         session.currentIndex >= session.questionIds.length - 1
                       }
-                      className="rounded-md bg-accent px-5 py-3 text-sm font-semibold text-white shadow-glow transition hover:bg-accentSoft disabled:cursor-not-allowed disabled:opacity-40"
+                      className="rounded-[10px] bg-accent px-5 py-3.5 text-sm font-semibold text-accentInk transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40"
                     >
                       Next
                     </button>

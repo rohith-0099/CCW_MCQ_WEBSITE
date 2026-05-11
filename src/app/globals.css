@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,7 +9,8 @@
 }
 
 body {
-  @apply bg-background text-slate-100 antialiased;
+  @apply bg-background font-sans text-zinc-100 antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 ::selection {

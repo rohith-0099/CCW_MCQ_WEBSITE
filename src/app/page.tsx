@@ -3,66 +3,91 @@ import { SUBJECT_LABELS } from "@/data/questions";
 import { SUBJECTS } from "@/lib/question-utils";
 
 const cardBase =
-  "rounded-lg border border-slate-800/80 bg-panel p-4 shadow-glow transition hover:border-accent/80";
+  "group flex items-center gap-3 border-b border-white/[0.06] px-4 py-3.5 transition last:border-b-0 hover:bg-surface2";
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-background px-4 py-5 sm:px-6 sm:py-8">
-      <div className="mx-auto flex w-full max-w-3xl flex-col gap-6">
-        <header className="flex flex-col gap-3 border-b border-slate-800/80 pb-5">
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">
-            ADT308 Practice Hub
+    <main className="min-h-screen bg-background px-[22px] py-12">
+      <div className="mx-auto flex w-full max-w-md flex-col">
+        <header className="mb-9 flex items-center justify-between">
+          <p className="text-[11px] font-medium uppercase tracking-[0.1em] text-zinc-400">
+            ADT 308
           </p>
-          <h1 className="text-2xl font-semibold leading-tight text-slate-100 sm:text-3xl">
-            MCQ practice, kept focused.
-          </h1>
-          <p className="text-sm leading-6 text-slate-400">
-            Pick a subject to drill down, or jump into a full-length mock test.
-            Each session is freshly randomized for focused practice.
-          </p>
+          <div className="flex h-6 w-6 items-center justify-center rounded-full border border-white/[0.06] bg-panel font-mono text-[10px] text-zinc-400">
+            A
+          </div>
         </header>
 
-        <section className="grid gap-3 sm:grid-cols-2">
-          {SUBJECTS.map((subject) => (
-            <Link
-              key={subject}
-              href={`/practice/${subject}`}
-              className={cardBase}
-            >
-              <div className="flex items-start justify-between gap-3">
-                <div className="min-w-0">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
-                    {subject}
-                  </p>
-                  <h2 className="mt-1 text-base font-semibold leading-snug text-slate-100">
-                    {SUBJECT_LABELS[subject]}
-                  </h2>
-                </div>
-                <span className="shrink-0 rounded-md border border-slate-700/80 bg-slate-950/40 px-2 py-1 text-xs text-slate-400">
-                  Practice
-                </span>
-              </div>
-            </Link>
-          ))}
+        <section className="mb-9">
+          <h1 className="text-[32px] font-medium leading-[1.12] text-zinc-100">
+            MCQ practice,
+            <br />
+            <span className="font-normal text-zinc-400">kept focused.</span>
+          </h1>
+          <p className="mt-4 text-sm leading-[1.55] text-zinc-400">
+            Pick a subject to drill down, or jump into a full-length mock test.
+            Each session is freshly randomized.
+          </p>
         </section>
 
-        <section className="flex flex-col items-start gap-4 rounded-lg border border-slate-800/80 bg-panel p-4 shadow-glow">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
-              Mock Test
+        <section className="mb-9">
+          <div className="mb-3.5 flex items-baseline justify-between">
+            <p className="text-[11px] font-medium uppercase tracking-[0.1em] text-zinc-400">
+              Subjects
             </p>
-            <h2 className="mt-1 text-lg font-semibold text-slate-100">
-              Full-length exam simulation
-            </h2>
-            <p className="mt-1 text-sm text-slate-400">
-              50 questions • 1 hour • Subject order aligned with the paper
-            </p>
+            <p className="font-mono text-[10px] text-zinc-600">{SUBJECTS.length}</p>
           </div>
+
+          <div className="overflow-hidden rounded-xl border border-white/[0.06] bg-panel">
+            {SUBJECTS.map((subject) => (
+              <Link key={subject} href={`/practice/${subject}`} className={cardBase}>
+                <span className="flex h-8 min-w-11 items-center justify-center rounded-md border border-white/[0.06] bg-surface2 px-2 font-mono text-[11px] font-medium text-zinc-100">
+                  {subject}
+                </span>
+                <span className="min-w-0 flex-1">
+                  <span className="block text-[15px] font-medium leading-5 text-zinc-100">
+                    {SUBJECT_LABELS[subject]}
+                  </span>
+                  <span className="mt-0.5 block text-xs text-zinc-600">
+                    Practice
+                  </span>
+                </span>
+                <span className="font-mono text-sm text-zinc-600 transition group-hover:text-zinc-100">
+                  →
+                </span>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <p className="mb-3.5 text-[11px] font-medium uppercase tracking-[0.1em] text-zinc-400">
+            Mock test
+          </p>
           <Link
             href="/mock-test"
-            className="inline-flex w-full justify-center rounded-md bg-accent px-4 py-3 text-sm font-semibold text-white shadow-glow transition hover:bg-accentSoft sm:w-auto"
+            className="block rounded-xl border border-white/[0.06] bg-panel p-5 transition hover:border-white/[0.12]"
           >
-            Start Mock Test
+            <h2 className="text-xl font-medium leading-tight text-zinc-100">
+              Full-length exam simulation
+            </h2>
+            <p className="mt-2.5 text-[13px] leading-5 text-zinc-400">
+              Subject order aligned with the paper.
+            </p>
+            <div className="mt-4 flex gap-2">
+              <span className="rounded-md border border-white/[0.06] bg-surface2 px-2.5 py-1.5 font-mono text-[11px] text-zinc-400">
+                50 questions
+              </span>
+              <span className="rounded-md border border-white/[0.06] bg-surface2 px-2.5 py-1.5 font-mono text-[11px] text-zinc-400">
+                1 hour
+              </span>
+            </div>
+            <div className="mt-4 flex items-center justify-between border-t border-white/[0.06] pt-4">
+              <span className="text-[13px] font-medium text-zinc-100">
+                Start mock test
+              </span>
+              <span className="font-mono text-sm text-zinc-100">→</span>
+            </div>
           </Link>
         </section>
       </div>
