@@ -10,8 +10,8 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#f8fafc",
-        panel: "#ffffff",
+        background: "#09090b",
+        panel: "#111113",
         accent: "#2563eb",
         accentSoft: "#1d4ed8",
       },
