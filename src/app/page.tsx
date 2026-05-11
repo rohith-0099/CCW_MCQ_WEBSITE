@@ -3,42 +3,42 @@ import { SUBJECT_LABELS } from "@/data/questions";
 import { SUBJECTS } from "@/lib/question-utils";
 
 const cardBase =
-  "rounded-2xl border border-slate-800 bg-panel/80 p-6 shadow-lg transition hover:-translate-y-1 hover:border-accent/70 hover:shadow-glow";
+  "rounded-lg border border-slate-200 bg-panel p-4 shadow-sm transition hover:border-accent hover:shadow-md";
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-gradient-to-br from-background via-slate-900 to-black px-6 py-10">
-      <div className="mx-auto flex w-full max-w-5xl flex-col gap-10">
-        <header className="flex flex-col gap-4">
-          <p className="text-sm uppercase tracking-[0.3em] text-slate-400">
+    <main className="min-h-screen bg-background px-4 py-5 sm:px-6 sm:py-8">
+      <div className="mx-auto flex w-full max-w-3xl flex-col gap-6">
+        <header className="flex flex-col gap-3 border-b border-slate-200 pb-5">
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">
             ADT308 Practice Hub
           </p>
-          <h1 className="text-4xl font-semibold text-white md:text-5xl">
-            Master your MCQs with focused practice sessions.
+          <h1 className="text-2xl font-semibold leading-tight text-slate-950 sm:text-3xl">
+            MCQ practice, kept focused.
           </h1>
-          <p className="max-w-2xl text-base text-slate-300">
+          <p className="text-sm leading-6 text-slate-600">
             Pick a subject to drill down, or jump into a full-length mock test.
             Each session is freshly randomized for focused practice.
           </p>
         </header>
 
-        <section className="grid gap-4 md:grid-cols-2">
+        <section className="grid gap-3 sm:grid-cols-2">
           {SUBJECTS.map((subject) => (
             <Link
               key={subject}
               href={`/practice/${subject}`}
               className={cardBase}
             >
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-xs uppercase tracking-[0.2em] text-slate-400">
+              <div className="flex items-start justify-between gap-3">
+                <div className="min-w-0">
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
                     {subject}
                   </p>
-                  <h2 className="mt-2 text-xl font-semibold text-white">
+                  <h2 className="mt-1 text-base font-semibold leading-snug text-slate-950">
                     {SUBJECT_LABELS[subject]}
                   </h2>
                 </div>
-                <span className="rounded-full border border-slate-700 px-3 py-1 text-xs text-slate-300">
+                <span className="shrink-0 rounded-md border border-slate-200 px-2 py-1 text-xs text-slate-600">
                   Practice
                 </span>
               </div>
@@ -46,21 +46,21 @@ export default function HomePage() {
           ))}
         </section>
 
-        <section className="flex flex-col items-start gap-4 rounded-2xl border border-slate-800 bg-slate-950/70 p-6">
+        <section className="flex flex-col items-start gap-4 rounded-lg border border-slate-200 bg-panel p-4 shadow-sm">
           <div>
-            <p className="text-xs uppercase tracking-[0.2em] text-slate-400">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
               Mock Test
             </p>
-            <h2 className="mt-2 text-2xl font-semibold text-white">
+            <h2 className="mt-1 text-lg font-semibold text-slate-950">
               Full-length exam simulation
             </h2>
-            <p className="mt-2 text-sm text-slate-300">
+            <p className="mt-1 text-sm text-slate-600">
               50 questions • 1 hour • Subject order aligned with the paper
             </p>
           </div>
           <Link
             href="/mock-test"
-            className="rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white shadow-glow transition hover:bg-accentSoft"
+            className="inline-flex w-full justify-center rounded-md bg-accent px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-accentSoft sm:w-auto"
           >
             Start Mock Test
           </Link>

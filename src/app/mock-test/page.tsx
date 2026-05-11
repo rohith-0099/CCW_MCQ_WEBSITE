@@ -136,47 +136,47 @@ export default function MockTestPage() {
 
   if (loading) {
     return (
-      <main className="min-h-screen bg-background px-6 py-10 text-slate-100">
+      <main className="min-h-screen bg-background px-4 py-5 text-slate-950 sm:px-6 sm:py-8">
         <div className="mx-auto w-full max-w-4xl">Loading...</div>
       </main>
     );
   }
 
   return (
-    <main className="min-h-screen bg-background px-6 py-10 text-slate-100">
-      <div className="mx-auto flex w-full max-w-5xl flex-col gap-6">
-        <header className="flex flex-col gap-2">
+    <main className="min-h-screen bg-background px-4 py-5 text-slate-950 sm:px-6 sm:py-8">
+      <div className="mx-auto flex w-full max-w-3xl flex-col gap-5">
+        <header className="flex flex-col gap-2 border-b border-slate-200 pb-4">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-xs uppercase tracking-[0.3em] text-slate-500">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">
                 Mock Test
               </p>
-              <h1 className="text-2xl font-semibold">
+              <h1 className="text-xl font-semibold leading-tight sm:text-2xl">
                 Full-length MCQ Exam
               </h1>
             </div>
             <Link
               href="/"
-              className="text-sm text-slate-300 transition hover:text-white"
+              className="rounded-md border border-slate-200 px-3 py-2 text-sm text-slate-700 transition hover:border-accent hover:text-accent"
             >
               Home
             </Link>
           </div>
-          <p className="text-sm text-slate-400">
+          <p className="text-sm text-slate-600">
             50 questions • 10 per subject • 1 hour timer
           </p>
         </header>
 
         {!session ? (
-          <section className="rounded-2xl border border-slate-800 bg-panel/70 p-6">
-            <p className="text-slate-300">
+          <section className="rounded-lg border border-slate-200 bg-panel p-4 shadow-sm">
+            <p className="text-sm leading-6 text-slate-600">
               Start the mock test to get a randomized set of questions in the
               official subject order.
             </p>
             <div className="mt-4 flex flex-wrap gap-3">
               <button
                 onClick={startNewSession}
-                className="rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white shadow-glow transition hover:bg-accentSoft"
+                className="w-full rounded-md bg-accent px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-accentSoft sm:w-auto"
               >
                 Start Mock Test
               </button>
@@ -184,20 +184,20 @@ export default function MockTestPage() {
           </section>
         ) : submitted ? (
           <section className="flex flex-col gap-6">
-            <div className="rounded-2xl border border-slate-800 bg-panel/70 p-6">
+            <div className="rounded-lg border border-slate-200 bg-panel p-4 shadow-sm sm:p-5">
               <div className="flex flex-wrap items-center justify-between gap-4">
                 <div>
-                  <h2 className="text-2xl font-semibold">Results</h2>
-                  <p className="mt-1 text-sm text-slate-300">
+                  <h2 className="text-xl font-semibold">Results</h2>
+                  <p className="mt-1 text-sm text-slate-700">
                     Score: {scoreSummary?.correct} / {TOTAL_QUESTIONS}
                   </p>
-                  <p className="text-sm text-slate-400">
+                  <p className="text-sm text-slate-500">
                     Correct: {scoreSummary?.correct} • Wrong: {scoreSummary?.wrong}
                   </p>
                 </div>
                 <button
                   onClick={startNewSession}
-                  className="rounded-full border border-slate-700 px-5 py-2 text-sm text-slate-200 transition hover:border-accent"
+                  className="w-full rounded-md border border-slate-200 px-4 py-3 text-sm font-medium text-slate-700 transition hover:border-accent hover:text-accent sm:w-auto"
                 >
                   Start New Mock Test
                 </button>
@@ -213,23 +213,23 @@ export default function MockTestPage() {
                 return (
                   <div
                     key={id}
-                    className="rounded-2xl border border-slate-800 bg-panel/70 p-6"
+                    className="rounded-lg border border-slate-200 bg-panel p-4 shadow-sm sm:p-5"
                   >
-                    <div className="flex flex-wrap items-center justify-between gap-2 text-xs uppercase tracking-wider text-slate-400">
+                    <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-semibold uppercase tracking-wider text-slate-500">
                       <span>
                         {index + 1}. {question.subject}
                       </span>
                       <span
-                        className={`rounded-full border px-3 py-1 text-[10px] ${
+                        className={`rounded-md border px-2 py-1 text-[10px] ${
                           isCorrect
-                            ? "border-emerald-400 text-emerald-200"
-                            : "border-rose-400 text-rose-200"
+                            ? "border-emerald-500 text-emerald-700"
+                            : "border-rose-500 text-rose-700"
                         }`}
                       >
                         {isCorrect ? "Correct" : "Wrong"}
                       </span>
                     </div>
-                    <h3 className="mt-4 text-base font-semibold text-white">
+                    <h3 className="mt-4 text-base font-semibold leading-7 text-slate-950">
                       {question.stem}
                     </h3>
                     <div className="mt-4 grid gap-2 text-sm">
@@ -237,27 +237,27 @@ export default function MockTestPage() {
                         const isAnswer = optionIndex === question.answer;
                         const isSelected = optionIndex === selected;
                         const optionStyles = isAnswer
-                          ? "border-emerald-400 bg-emerald-500/10 text-emerald-100"
+                          ? "border-emerald-500 bg-emerald-50 text-emerald-950"
                           : isSelected
-                          ? "border-rose-400 bg-rose-500/10 text-rose-100"
-                          : "border-slate-700 bg-slate-900/50 text-slate-200";
+                          ? "border-rose-500 bg-rose-50 text-rose-950"
+                          : "border-slate-200 bg-white text-slate-900";
                         return (
                           <div
                             key={option}
-                            className={`rounded-xl border px-3 py-2 ${optionStyles}`}
+                            className={`rounded-lg border px-3 py-2 leading-6 ${optionStyles}`}
                           >
                             {option}
                           </div>
                         );
                       })}
                     </div>
-                    <p className="mt-4 text-sm text-slate-300">
-                      <span className="font-semibold text-emerald-200">
+                    <p className="mt-4 text-sm text-slate-700">
+                      <span className="font-semibold text-emerald-700">
                         Correct answer:
                       </span>{" "}
                       {question.options[question.answer]}
                     </p>
-                    <p className="mt-2 text-sm text-slate-400">
+                    <p className="mt-2 text-sm leading-6 text-slate-600">
                       {question.explanation}
                     </p>
                   </div>
@@ -266,17 +266,17 @@ export default function MockTestPage() {
             </div>
           </section>
         ) : (
-          <section className="rounded-2xl border border-slate-800 bg-panel/70 p-6">
-            <div className="flex flex-wrap items-center justify-between gap-4 text-xs uppercase tracking-wider text-slate-400">
+          <section className="rounded-lg border border-slate-200 bg-panel p-4 shadow-sm sm:p-5">
+            <div className="flex flex-wrap items-center justify-between gap-3 text-xs font-semibold uppercase tracking-wider text-slate-500">
               <span>
                 Question {session.currentIndex + 1} / {session.questionIds.length}
               </span>
-              <span className="rounded-full border border-slate-700 px-3 py-1 text-[10px] text-slate-200">
+              <span className="rounded-md border border-slate-200 px-3 py-2 text-[10px] text-slate-700">
                 {formatTime(timeLeftMs)} remaining
               </span>
             </div>
 
-            <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-slate-800">
+            <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-slate-100">
               <div
                 className="h-full bg-accent transition-all"
                 style={{
@@ -290,10 +290,10 @@ export default function MockTestPage() {
 
             {currentQuestion && (
               <div className="mt-6">
-                <div className="text-xs uppercase tracking-[0.3em] text-slate-500">
+                <div className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">
                   {currentQuestion.subject} — {SUBJECT_LABELS[currentQuestion.subject]}
                 </div>
-                <h2 className="mt-3 text-lg font-semibold text-white">
+                <h2 className="mt-3 text-base font-semibold leading-7 text-slate-950 sm:text-lg">
                   {currentQuestion.stem}
                 </h2>
 
@@ -311,10 +311,10 @@ export default function MockTestPage() {
                             },
                           })
                         }
-                        className={`w-full rounded-xl border px-4 py-3 text-left text-sm transition hover:border-accent/70 ${
+                        className={`w-full rounded-lg border px-4 py-3 text-left text-sm leading-6 transition hover:border-accent ${
                           isSelected
-                            ? "border-accent bg-accent/10 text-white"
-                            : "border-slate-700 bg-slate-900/60 text-slate-200"
+                            ? "border-accent bg-blue-50 text-slate-950"
+                            : "border-slate-200 bg-white text-slate-900"
                         }`}
                       >
                         {option}
@@ -331,14 +331,14 @@ export default function MockTestPage() {
                       })
                     }
                     disabled={session.currentIndex === 0}
-                    className="rounded-full border border-slate-700 px-4 py-2 text-sm text-slate-200 transition hover:border-accent disabled:cursor-not-allowed disabled:opacity-40"
+                    className="rounded-md border border-slate-200 px-4 py-3 text-sm font-medium text-slate-700 transition hover:border-accent hover:text-accent disabled:cursor-not-allowed disabled:opacity-40"
                   >
                     Previous
                   </button>
                   <div className="flex flex-wrap gap-3">
                     <button
                       onClick={handleSubmit}
-                      className="rounded-full border border-slate-700 px-4 py-2 text-sm text-slate-200 transition hover:border-accent"
+                      className="rounded-md border border-slate-200 px-4 py-3 text-sm font-medium text-slate-700 transition hover:border-accent hover:text-accent"
                     >
                       Submit
                     </button>
@@ -354,7 +354,7 @@ export default function MockTestPage() {
                       disabled={
                         session.currentIndex >= session.questionIds.length - 1
                       }
-                      className="rounded-full bg-accent px-5 py-2 text-sm font-semibold text-white transition hover:bg-accentSoft disabled:cursor-not-allowed disabled:opacity-40"
+                      className="rounded-md bg-accent px-5 py-3 text-sm font-semibold text-white transition hover:bg-accentSoft disabled:cursor-not-allowed disabled:opacity-40"
                     >
                       Next
                     </button>

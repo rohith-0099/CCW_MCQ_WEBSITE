@@ -78,7 +78,7 @@ export default function PracticePage({ params }: { params: { subject: string } }
 
   if (!isValidSubject) {
     return (
-      <main className="min-h-screen bg-background px-6 py-10 text-slate-100">
+      <main className="min-h-screen bg-background px-4 py-5 text-slate-950 sm:px-6 sm:py-8">
         <div className="mx-auto w-full max-w-3xl">
           <h1 className="text-2xl font-semibold">Unknown subject.</h1>
           <Link href="/" className="mt-4 inline-flex text-accent">
@@ -91,7 +91,7 @@ export default function PracticePage({ params }: { params: { subject: string } }
 
   if (loading) {
     return (
-      <main className="min-h-screen bg-background px-6 py-10 text-slate-100">
+      <main className="min-h-screen bg-background px-4 py-5 text-slate-950 sm:px-6 sm:py-8">
         <div className="mx-auto w-full max-w-3xl">Loading...</div>
       </main>
     );
@@ -114,11 +114,11 @@ export default function PracticePage({ params }: { params: { subject: string } }
     const isSelected = selectedAnswer === optionIndex;
     const isAnswered = selectedAnswer !== undefined;
 
-    let classes = "border-slate-700 bg-slate-900/60 text-slate-100";
+    let classes = "border-slate-200 bg-white text-slate-900";
     if (isAnswered && isCorrect) {
-      classes = "border-emerald-400 bg-emerald-500/20 text-emerald-100";
+      classes = "border-emerald-500 bg-emerald-50 text-emerald-950";
     } else if (isAnswered && isSelected && !isCorrect) {
-      classes = "border-rose-400 bg-rose-500/20 text-rose-100";
+      classes = "border-rose-500 bg-rose-50 text-rose-950";
     }
 
     return (
@@ -132,7 +132,7 @@ export default function PracticePage({ params }: { params: { subject: string } }
             },
           })
         }
-        className={`w-full rounded-xl border px-4 py-3 text-left text-sm transition hover:border-accent/70 ${classes}`}
+        className={`w-full rounded-lg border px-4 py-3 text-left text-sm leading-6 transition hover:border-accent ${classes}`}
       >
         {question.options[optionIndex]}
       </button>
@@ -140,41 +140,41 @@ export default function PracticePage({ params }: { params: { subject: string } }
   };
 
   return (
-    <main className="min-h-screen bg-background px-6 py-10 text-slate-100">
-      <div className="mx-auto flex w-full max-w-4xl flex-col gap-6">
-        <header className="flex flex-col gap-3">
+    <main className="min-h-screen bg-background px-4 py-5 text-slate-950 sm:px-6 sm:py-8">
+      <div className="mx-auto flex w-full max-w-3xl flex-col gap-5">
+        <header className="flex flex-col gap-3 border-b border-slate-200 pb-4">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-xs uppercase tracking-[0.3em] text-slate-500">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">
                 {subject}
               </p>
-              <h1 className="text-2xl font-semibold">
+              <h1 className="text-xl font-semibold leading-tight sm:text-2xl">
                 {SUBJECT_LABELS[subject]}
               </h1>
             </div>
             <Link
               href="/"
-              className="text-sm text-slate-300 transition hover:text-white"
+              className="rounded-md border border-slate-200 px-3 py-2 text-sm text-slate-700 transition hover:border-accent hover:text-accent"
             >
               Home
             </Link>
           </div>
 
-          <div className="rounded-2xl border border-slate-800 bg-panel/70 p-4">
-            <p className="text-sm text-slate-300">Choose question count</p>
+          <div className="rounded-lg border border-slate-200 bg-panel p-4 shadow-sm">
+            <p className="text-sm font-medium text-slate-700">Choose question count</p>
             <div className="mt-3 flex flex-wrap gap-2">
               {availableCounts.map((count) => (
                 <button
                   key={count}
                   onClick={() => createSession(count)}
-                  className="rounded-full border border-slate-700 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-slate-200 transition hover:border-accent"
+                  className="rounded-md border border-slate-200 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-wider text-slate-700 transition hover:border-accent hover:text-accent"
                 >
                   {count}
                 </button>
               ))}
               <button
                 onClick={() => createSession(-1)}
-                className="rounded-full border border-slate-700 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-slate-200 transition hover:border-accent"
+                className="rounded-md border border-slate-200 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-wider text-slate-700 transition hover:border-accent hover:text-accent"
               >
                 All
               </button>
@@ -183,33 +183,33 @@ export default function PracticePage({ params }: { params: { subject: string } }
         </header>
 
         {!session || !currentQuestion ? (
-          <div className="rounded-2xl border border-slate-800 bg-panel/70 p-6">
-            <p className="text-slate-300">
+          <div className="rounded-lg border border-slate-200 bg-panel p-4 shadow-sm">
+            <p className="text-sm text-slate-600">
               Start a practice session to load questions.
             </p>
           </div>
         ) : (
-          <section className="rounded-2xl border border-slate-800 bg-panel/70 p-6">
-            <div className="flex items-center justify-between text-xs uppercase tracking-wider text-slate-400">
+          <section className="rounded-lg border border-slate-200 bg-panel p-4 shadow-sm sm:p-5">
+            <div className="flex items-center justify-between gap-3 text-xs font-semibold uppercase tracking-wider text-slate-500">
               <span>
                 Question {session.currentIndex + 1} / {session.questionIds.length}
               </span>
               <button
                 onClick={() => createSession(session.count)}
-                className="rounded-full border border-slate-700 px-3 py-1 text-[10px] text-slate-200 transition hover:border-accent"
+                className="rounded-md border border-slate-200 px-3 py-2 text-[10px] text-slate-700 transition hover:border-accent hover:text-accent"
               >
                 New Session
               </button>
             </div>
 
-            <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-slate-800">
+            <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-slate-100">
               <div
                 className="h-full bg-accent transition-all"
                 style={{ width: `${progress}%` }}
               />
             </div>
 
-            <h2 className="mt-6 text-lg font-semibold text-white">
+            <h2 className="mt-5 text-base font-semibold leading-7 text-slate-950 sm:text-lg">
               {currentQuestion.stem}
             </h2>
 
@@ -220,17 +220,17 @@ export default function PracticePage({ params }: { params: { subject: string } }
             </div>
 
             {selectedAnswer !== undefined && (
-              <div className="mt-6 rounded-xl border border-slate-700 bg-slate-950/80 p-4">
-                <p className="text-sm text-emerald-200">
+              <div className="mt-5 rounded-lg border border-slate-200 bg-slate-50 p-4">
+                <p className="text-sm font-medium text-emerald-700">
                   Correct answer: {currentQuestion.options[currentQuestion.answer]}
                 </p>
-                <p className="mt-2 text-sm text-slate-300">
+                <p className="mt-2 text-sm leading-6 text-slate-600">
                   {currentQuestion.explanation}
                 </p>
               </div>
             )}
 
-            <div className="mt-6 flex items-center justify-between">
+            <div className="mt-5 flex items-center justify-between gap-3">
               <button
                 onClick={() =>
                   updateSession({
@@ -238,7 +238,7 @@ export default function PracticePage({ params }: { params: { subject: string } }
                   })
                 }
                 disabled={session.currentIndex === 0}
-                className="rounded-full border border-slate-700 px-4 py-2 text-sm text-slate-200 transition hover:border-accent disabled:cursor-not-allowed disabled:opacity-40"
+                className="rounded-md border border-slate-200 px-4 py-3 text-sm font-medium text-slate-700 transition hover:border-accent hover:text-accent disabled:cursor-not-allowed disabled:opacity-40"
               >
                 Previous
               </button>
@@ -252,7 +252,7 @@ export default function PracticePage({ params }: { params: { subject: string } }
                   })
                 }
                 disabled={session.currentIndex >= session.questionIds.length - 1}
-                className="rounded-full bg-accent px-5 py-2 text-sm font-semibold text-white transition hover:bg-accentSoft disabled:cursor-not-allowed disabled:opacity-40"
+                className="rounded-md bg-accent px-5 py-3 text-sm font-semibold text-white transition hover:bg-accentSoft disabled:cursor-not-allowed disabled:opacity-40"
               >
                 Next
               </button>

@@ -10,13 +10,13 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#0b0f17",
-        panel: "#111827",
-        accent: "#3b82f6",
+        background: "#f8fafc",
+        panel: "#ffffff",
+        accent: "#2563eb",
         accentSoft: "#1d4ed8",
       },
       boxShadow: {
-        glow: "0 0 30px rgba(59,130,246,0.35)",
+        glow: "0 8px 24px rgba(15, 23, 42, 0.08)",
       },
     },
   },
