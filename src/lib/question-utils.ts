@@ -19,17 +19,16 @@ export function pickRandom<T>(items: T[], count: number): T[] {
 }
 
 export function groupBySubject(questions: Question[]): Record<Subject, Question[]> {
-  return questions.reduce<Record<Subject, Question[]>>(
-    (acc, question) => {
-      acc[question.subject].push(question);
-      return acc;
-    },
-    {
-      IML: [],
-      DS: [],
-      OS: [],
-      DBMS: [],
-      FDS: [],
-    }
-  );
+  const groups: Record<Subject, Question[]> = {
+    IML: [],
+    DS: [],
+    OS: [],
+    DBMS: [],
+    FDS: [],
+  };
+
+  return questions.reduce((acc, question) => {
+    acc[question.subject].push(question);
+    return acc;
+  }, groups);
 }
