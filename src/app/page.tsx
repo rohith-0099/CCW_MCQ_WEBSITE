@@ -3,13 +3,13 @@ import { SUBJECT_LABELS } from "@/data/questions";
 import { SUBJECTS } from "@/lib/question-utils";
 
 const cardBase =
-  "rounded-lg border border-slate-800 bg-panel p-4 shadow-none transition hover:border-accent hover:shadow-none";
+  "rounded-lg border border-slate-800/80 bg-panel p-4 shadow-glow transition hover:border-accent/80";
 
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-background px-4 py-5 sm:px-6 sm:py-8">
       <div className="mx-auto flex w-full max-w-3xl flex-col gap-6">
-        <header className="flex flex-col gap-3 border-b border-slate-800 pb-5">
+        <header className="flex flex-col gap-3 border-b border-slate-800/80 pb-5">
           <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">
             ADT308 Practice Hub
           </p>
@@ -38,7 +38,7 @@ export default function HomePage() {
                     {SUBJECT_LABELS[subject]}
                   </h2>
                 </div>
-                <span className="shrink-0 rounded-md border border-slate-800 px-2 py-1 text-xs text-slate-400">
+                <span className="shrink-0 rounded-md border border-slate-700/80 bg-slate-950/40 px-2 py-1 text-xs text-slate-400">
                   Practice
                 </span>
               </div>
@@ -46,7 +46,7 @@ export default function HomePage() {
           ))}
         </section>
 
-        <section className="flex flex-col items-start gap-4 rounded-lg border border-slate-800 bg-panel p-4 shadow-none">
+        <section className="flex flex-col items-start gap-4 rounded-lg border border-slate-800/80 bg-panel p-4 shadow-glow">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
               Mock Test
@@ -60,7 +60,7 @@ export default function HomePage() {
           </div>
           <Link
             href="/mock-test"
-            className="inline-flex w-full justify-center rounded-md bg-accent px-4 py-3 text-sm font-semibold text-white shadow-none transition hover:bg-accentSoft sm:w-auto"
+            className="inline-flex w-full justify-center rounded-md bg-accent px-4 py-3 text-sm font-semibold text-white shadow-glow transition hover:bg-accentSoft sm:w-auto"
           >
             Start Mock Test
           </Link>

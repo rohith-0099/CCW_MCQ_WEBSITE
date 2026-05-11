@@ -145,7 +145,7 @@ export default function MockTestPage() {
   return (
     <main className="min-h-screen bg-background px-4 py-5 text-slate-100 sm:px-6 sm:py-8">
       <div className="mx-auto flex w-full max-w-3xl flex-col gap-5">
-        <header className="flex flex-col gap-2 border-b border-slate-800 pb-4">
+        <header className="flex flex-col gap-2 border-b border-slate-800/80 pb-4">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">
@@ -157,7 +157,7 @@ export default function MockTestPage() {
             </div>
             <Link
               href="/"
-              className="rounded-md border border-slate-800 px-3 py-2 text-sm text-slate-300 transition hover:border-accent hover:text-accent"
+              className="rounded-md border border-slate-700/80 bg-slate-950/40 px-3 py-2 text-sm text-slate-300 transition hover:border-accent hover:text-accent"
             >
               Home
             </Link>
@@ -168,7 +168,7 @@ export default function MockTestPage() {
         </header>
 
         {!session ? (
-          <section className="rounded-lg border border-slate-800 bg-panel p-4 shadow-none">
+          <section className="rounded-lg border border-slate-800/80 bg-panel p-4 shadow-glow">
             <p className="text-sm leading-6 text-slate-400">
               Start the mock test to get a randomized set of questions in the
               official subject order.
@@ -176,7 +176,7 @@ export default function MockTestPage() {
             <div className="mt-4 flex flex-wrap gap-3">
               <button
                 onClick={startNewSession}
-                className="w-full rounded-md bg-accent px-4 py-3 text-sm font-semibold text-white shadow-none transition hover:bg-accentSoft sm:w-auto"
+                className="w-full rounded-md bg-accent px-4 py-3 text-sm font-semibold text-white shadow-glow transition hover:bg-accentSoft sm:w-auto"
               >
                 Start Mock Test
               </button>
@@ -184,7 +184,7 @@ export default function MockTestPage() {
           </section>
         ) : submitted ? (
           <section className="flex flex-col gap-6">
-            <div className="rounded-lg border border-slate-800 bg-panel p-4 shadow-none sm:p-5">
+            <div className="rounded-lg border border-slate-800/80 bg-panel p-4 shadow-glow sm:p-5">
               <div className="flex flex-wrap items-center justify-between gap-4">
                 <div>
                   <h2 className="text-xl font-semibold">Results</h2>
@@ -197,7 +197,7 @@ export default function MockTestPage() {
                 </div>
                 <button
                   onClick={startNewSession}
-                  className="w-full rounded-md border border-slate-800 px-4 py-3 text-sm font-medium text-slate-300 transition hover:border-accent hover:text-accent sm:w-auto"
+                  className="w-full rounded-md border border-slate-700/80 bg-slate-950/40 px-4 py-3 text-sm font-medium text-slate-300 transition hover:border-accent hover:text-accent sm:w-auto"
                 >
                   Start New Mock Test
                 </button>
@@ -213,7 +213,7 @@ export default function MockTestPage() {
                 return (
                   <div
                     key={id}
-                    className="rounded-lg border border-slate-800 bg-panel p-4 shadow-none sm:p-5"
+                    className="rounded-lg border border-slate-800/80 bg-panel p-4 shadow-glow sm:p-5"
                   >
                     <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-semibold uppercase tracking-wider text-slate-500">
                       <span>
@@ -237,10 +237,10 @@ export default function MockTestPage() {
                         const isAnswer = optionIndex === question.answer;
                         const isSelected = optionIndex === selected;
                         const optionStyles = isAnswer
-                          ? "border-emerald-500 bg-emerald-950/30 text-emerald-100"
+                          ? "border-emerald-400/70 bg-emerald-500/15 text-emerald-100 shadow-glow backdrop-blur-md"
                           : isSelected
-                          ? "border-rose-500 bg-rose-950/30 text-rose-100"
-                          : "border-slate-800 bg-slate-950 text-slate-100";
+                          ? "border-rose-400/70 bg-rose-500/15 text-rose-100 shadow-glow backdrop-blur-md"
+                          : "border-white/10 bg-white/[0.06] text-slate-100 shadow-glow backdrop-blur-md";
                         return (
                           <div
                             key={option}
@@ -266,12 +266,12 @@ export default function MockTestPage() {
             </div>
           </section>
         ) : (
-          <section className="rounded-lg border border-slate-800 bg-panel p-4 shadow-none sm:p-5">
+          <section className="rounded-lg border border-slate-800/80 bg-panel p-4 shadow-glow sm:p-5">
             <div className="flex flex-wrap items-center justify-between gap-3 text-xs font-semibold uppercase tracking-wider text-slate-500">
               <span>
                 Question {session.currentIndex + 1} / {session.questionIds.length}
               </span>
-              <span className="rounded-md border border-slate-800 px-3 py-2 text-[10px] text-slate-300">
+              <span className="rounded-md border border-slate-700/80 bg-slate-950/40 px-3 py-2 text-[10px] text-slate-300">
                 {formatTime(timeLeftMs)} remaining
               </span>
             </div>
@@ -311,10 +311,10 @@ export default function MockTestPage() {
                             },
                           })
                         }
-                        className={`w-full rounded-lg border px-4 py-3 text-left text-sm leading-6 transition hover:border-accent ${
+                        className={`w-full rounded-lg border px-4 py-3 text-left text-sm leading-6 shadow-glow backdrop-blur-md transition hover:border-accent ${
                           isSelected
-                            ? "border-accent bg-blue-950/40 text-slate-100"
-                            : "border-slate-800 bg-slate-950 text-slate-100"
+                            ? "border-accent/80 bg-blue-500/15 text-slate-100"
+                            : "border-white/10 bg-white/[0.06] text-slate-100"
                         }`}
                       >
                         {option}
@@ -331,14 +331,14 @@ export default function MockTestPage() {
                       })
                     }
                     disabled={session.currentIndex === 0}
-                    className="rounded-md border border-slate-800 px-4 py-3 text-sm font-medium text-slate-300 transition hover:border-accent hover:text-accent disabled:cursor-not-allowed disabled:opacity-40"
+                    className="rounded-md border border-slate-700/80 bg-slate-950/40 px-4 py-3 text-sm font-medium text-slate-300 transition hover:border-accent hover:text-accent disabled:cursor-not-allowed disabled:opacity-40"
                   >
                     Previous
                   </button>
                   <div className="flex flex-wrap gap-3">
                     <button
                       onClick={handleSubmit}
-                      className="rounded-md border border-slate-800 px-4 py-3 text-sm font-medium text-slate-300 transition hover:border-accent hover:text-accent"
+                      className="rounded-md border border-slate-700/80 bg-slate-950/40 px-4 py-3 text-sm font-medium text-slate-300 transition hover:border-accent hover:text-accent"
                     >
                       Submit
                     </button>
@@ -354,7 +354,7 @@ export default function MockTestPage() {
                       disabled={
                         session.currentIndex >= session.questionIds.length - 1
                       }
-                      className="rounded-md bg-accent px-5 py-3 text-sm font-semibold text-white transition hover:bg-accentSoft disabled:cursor-not-allowed disabled:opacity-40"
+                      className="rounded-md bg-accent px-5 py-3 text-sm font-semibold text-white shadow-glow transition hover:bg-accentSoft disabled:cursor-not-allowed disabled:opacity-40"
                     >
                       Next
                     </button>

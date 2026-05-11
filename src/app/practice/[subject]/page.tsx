@@ -114,11 +114,14 @@ export default function PracticePage({ params }: { params: { subject: string } }
     const isSelected = selectedAnswer === optionIndex;
     const isAnswered = selectedAnswer !== undefined;
 
-    let classes = "border-slate-800 bg-slate-950 text-slate-100";
+    let classes =
+      "border-white/10 bg-white/[0.06] text-slate-100 shadow-glow backdrop-blur-md";
     if (isAnswered && isCorrect) {
-      classes = "border-emerald-500 bg-emerald-950/30 text-emerald-100";
+      classes =
+        "border-emerald-400/70 bg-emerald-500/15 text-emerald-100 shadow-glow backdrop-blur-md";
     } else if (isAnswered && isSelected && !isCorrect) {
-      classes = "border-rose-500 bg-rose-950/30 text-rose-100";
+      classes =
+        "border-rose-400/70 bg-rose-500/15 text-rose-100 shadow-glow backdrop-blur-md";
     }
 
     return (
@@ -142,7 +145,7 @@ export default function PracticePage({ params }: { params: { subject: string } }
   return (
     <main className="min-h-screen bg-background px-4 py-5 text-slate-100 sm:px-6 sm:py-8">
       <div className="mx-auto flex w-full max-w-3xl flex-col gap-5">
-        <header className="flex flex-col gap-3 border-b border-slate-800 pb-4">
+        <header className="flex flex-col gap-3 border-b border-slate-800/80 pb-4">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">
@@ -154,27 +157,27 @@ export default function PracticePage({ params }: { params: { subject: string } }
             </div>
             <Link
               href="/"
-              className="rounded-md border border-slate-800 px-3 py-2 text-sm text-slate-300 transition hover:border-accent hover:text-accent"
+              className="rounded-md border border-slate-700/80 bg-slate-950/40 px-3 py-2 text-sm text-slate-300 transition hover:border-accent hover:text-accent"
             >
               Home
             </Link>
           </div>
 
-          <div className="rounded-lg border border-slate-800 bg-panel p-4 shadow-none">
+          <div className="rounded-lg border border-slate-800/80 bg-panel p-4 shadow-glow">
             <p className="text-sm font-medium text-slate-300">Choose question count</p>
             <div className="mt-3 flex flex-wrap gap-2">
               {availableCounts.map((count) => (
                 <button
                   key={count}
                   onClick={() => createSession(count)}
-                  className="rounded-md border border-slate-800 bg-slate-950 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-slate-300 transition hover:border-accent hover:text-accent"
+                  className="rounded-md border border-slate-700/80 bg-slate-950/70 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-slate-300 transition hover:border-accent hover:text-accent"
                 >
                   {count}
                 </button>
               ))}
               <button
                 onClick={() => createSession(-1)}
-                className="rounded-md border border-slate-800 bg-slate-950 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-slate-300 transition hover:border-accent hover:text-accent"
+                className="rounded-md border border-slate-700/80 bg-slate-950/70 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-slate-300 transition hover:border-accent hover:text-accent"
               >
                 All
               </button>
@@ -183,20 +186,20 @@ export default function PracticePage({ params }: { params: { subject: string } }
         </header>
 
         {!session || !currentQuestion ? (
-          <div className="rounded-lg border border-slate-800 bg-panel p-4 shadow-none">
+          <div className="rounded-lg border border-slate-800/80 bg-panel p-4 shadow-glow">
             <p className="text-sm text-slate-400">
               Start a practice session to load questions.
             </p>
           </div>
         ) : (
-          <section className="rounded-lg border border-slate-800 bg-panel p-4 shadow-none sm:p-5">
+          <section className="rounded-lg border border-slate-800/80 bg-panel p-4 shadow-glow sm:p-5">
             <div className="flex items-center justify-between gap-3 text-xs font-semibold uppercase tracking-wider text-slate-500">
               <span>
                 Question {session.currentIndex + 1} / {session.questionIds.length}
               </span>
               <button
                 onClick={() => createSession(session.count)}
-                className="rounded-md border border-slate-800 px-3 py-2 text-[10px] text-slate-300 transition hover:border-accent hover:text-accent"
+                className="rounded-md border border-slate-700/80 bg-slate-950/40 px-3 py-2 text-[10px] text-slate-300 transition hover:border-accent hover:text-accent"
               >
                 New Session
               </button>
@@ -220,7 +223,7 @@ export default function PracticePage({ params }: { params: { subject: string } }
             </div>
 
             {selectedAnswer !== undefined && (
-              <div className="mt-5 rounded-lg border border-slate-800 bg-slate-900 p-4">
+              <div className="mt-5 rounded-lg border border-slate-800/80 bg-slate-900/80 p-4 shadow-glow">
                 <p className="text-sm font-medium text-emerald-300">
                   Correct answer: {currentQuestion.options[currentQuestion.answer]}
                 </p>
@@ -238,7 +241,7 @@ export default function PracticePage({ params }: { params: { subject: string } }
                   })
                 }
                 disabled={session.currentIndex === 0}
-                className="rounded-md border border-slate-800 px-4 py-3 text-sm font-medium text-slate-300 transition hover:border-accent hover:text-accent disabled:cursor-not-allowed disabled:opacity-40"
+                className="rounded-md border border-slate-700/80 bg-slate-950/40 px-4 py-3 text-sm font-medium text-slate-300 transition hover:border-accent hover:text-accent disabled:cursor-not-allowed disabled:opacity-40"
               >
                 Previous
               </button>
@@ -252,7 +255,7 @@ export default function PracticePage({ params }: { params: { subject: string } }
                   })
                 }
                 disabled={session.currentIndex >= session.questionIds.length - 1}
-                className="rounded-md bg-accent px-5 py-3 text-sm font-semibold text-white transition hover:bg-accentSoft disabled:cursor-not-allowed disabled:opacity-40"
+                className="rounded-md bg-accent px-5 py-3 text-sm font-semibold text-white shadow-glow transition hover:bg-accentSoft disabled:cursor-not-allowed disabled:opacity-40"
               >
                 Next
               </button>
