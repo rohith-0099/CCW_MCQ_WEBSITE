@@ -19,7 +19,7 @@ export function pickRandom<T>(items: T[], count: number): T[] {
 }
 
 export function groupBySubject(questions: Question[]): Record<Subject, Question[]> {
-  return questions.reduce(
+  return questions.reduce<Record<Subject, Question[]>>(
     (acc, question) => {
       acc[question.subject].push(question);
       return acc;
@@ -30,6 +30,6 @@ export function groupBySubject(questions: Question[]): Record<Subject, Question[
       OS: [],
       DBMS: [],
       FDS: [],
-    } satisfies Record<Subject, Question[]>
+    }
   );
 }
