@@ -17,9 +17,7 @@ npm run dev
 ```
 
 Open `http://localhost:3000` in your browser.
-
-## Scripts
-
+##Script
 ```bash
 npm run dev
 npm run lint
