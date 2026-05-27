@@ -63,8 +63,34 @@ export default function MockTestPage() {
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
+    const stored = localStorage.getItem(SESSION_KEY);
+    if (stored) {
+      try {
+        const parsed = JSON.parse(stored) as MockTestSession;
+        const validQuestionIds = parsed.questionIds.filter((id) =>
+          questionMap.has(id)
+        );
+        if (validQuestionIds.length > 0) {
+          setSession({
+            ...parsed,
+            questionIds: validQuestionIds,
+            currentIndex: Math.min(parsed.currentIndex, validQuestionIds.length - 1),
+          });
+          setSubmitted(Boolean(parsed.completedAt));
+          const remaining = Math.max(
+            0,
+            parsed.durationMs - (Date.now() - parsed.startedAt)
+          );
+          setTimeLeftMs(remaining);
+        } else {
+          localStorage.removeItem(SESSION_KEY);
+        }
+      } catch {
+        localStorage.removeItem(SESSION_KEY);
+      }
+    }
     setLoading(false);
-  }, []);
+  }, [questionMap]);
 
   useEffect(() => {
     if (!session || submitted) return;
