@@ -49,8 +49,31 @@ export default function PracticePage({ params }: { params: { subject: string } }
       setLoading(false);
       return;
     }
+
+    const stored = localStorage.getItem(getSessionKey(subject));
+    if (stored) {
+      try {
+        const parsed = JSON.parse(stored) as PracticeSession;
+        const validQuestionIds = parsed.questionIds.filter((id) => {
+          const question = questionMap.get(id);
+          return question?.subject === subject;
+        });
+        if (validQuestionIds.length > 0) {
+          setSession({
+            ...parsed,
+            questionIds: validQuestionIds,
+            count: validQuestionIds.length,
+            currentIndex: Math.min(parsed.currentIndex, validQuestionIds.length - 1),
+          });
+        } else {
+          localStorage.removeItem(getSessionKey(subject));
+        }
+      } catch {
+        localStorage.removeItem(getSessionKey(subject));
+      }
+    }
     setLoading(false);
-  }, [isValidSubject]);
+  }, [isValidSubject, questionMap, subject]);
 
   const createSession = (count: number) => {
     const total = count === -1 ? subjectQuestions.length : count;
