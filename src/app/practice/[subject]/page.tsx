@@ -138,6 +138,15 @@ export default function PracticePage({ params }: { params: { subject: string } }
     ? ((session.currentIndex + 1) / session.questionIds.length) * 100
     : 0;
   const answeredCount = session ? Object.keys(session.answers).length : 0;
+  const correctSoFar = session
+    ? Object.entries(session.answers).reduce((total, [id, answer]) => {
+        const question = questionMap.get(id);
+        if (question && question.answer === answer) {
+          return total + 1;
+        }
+        return total;
+      }, 0)
+    : 0;
 
   const renderOption = (question: Question, optionIndex: number) => {
     const isCorrect = optionIndex === question.answer;
@@ -292,6 +301,9 @@ export default function PracticePage({ params }: { params: { subject: string } }
             )}
 
             <div className="mt-5 flex items-center justify-between gap-3">
+              <p className="text-xs text-zinc-500">
+                Correct so far: {correctSoFar} / {answeredCount}
+              </p>
               <button
                 onClick={() =>
                   updateSession({
