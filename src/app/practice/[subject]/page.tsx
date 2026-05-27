@@ -100,6 +100,11 @@ export default function PracticePage({ params }: { params: { subject: string } }
     });
   };
 
+  const clearSession = () => {
+    localStorage.removeItem(getSessionKey(subject));
+    setSession(null);
+  };
+
   if (!isValidSubject) {
     return (
       <main className="min-h-screen bg-background px-4 py-5 text-slate-100 sm:px-6 sm:py-8">
@@ -215,6 +220,25 @@ export default function PracticePage({ params }: { params: { subject: string } }
               </button>
             </div>
           </div>
+
+          {session && (
+            <div className="flex items-center justify-between rounded-xl border border-white/[0.06] bg-panel px-4 py-3">
+              <div>
+                <p className="text-xs font-medium uppercase tracking-[0.1em] text-zinc-600">
+                  Session in progress
+                </p>
+                <p className="text-sm text-zinc-300">
+                  {session.questionIds.length} questions • {session.currentIndex + 1} answered
+                </p>
+              </div>
+              <button
+                onClick={clearSession}
+                className="rounded-md border border-white/[0.06] bg-surface2 px-3 py-2 font-mono text-[10px] text-zinc-400 transition hover:border-white/[0.12] hover:text-zinc-100"
+              >
+                Clear
+              </button>
+            </div>
+          )}
         </header>
 
         {!session || !currentQuestion ? (
