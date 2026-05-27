@@ -14,7 +14,7 @@ type PracticeSession = {
   startedAt: number;
 };
 
-const QUESTION_OPTIONS = [5, 10, 20];
+const QUESTION_OPTIONS = [5, 10, 15, 20];
 const OPTION_KEYS = ["A", "B", "C", "D"];
 
 function getSessionKey(subject: Subject) {
