@@ -137,6 +137,7 @@ export default function PracticePage({ params }: { params: { subject: string } }
   const progress = session
     ? ((session.currentIndex + 1) / session.questionIds.length) * 100
     : 0;
+  const answeredCount = session ? Object.keys(session.answers).length : 0;
 
   const renderOption = (question: Question, optionIndex: number) => {
     const isCorrect = optionIndex === question.answer;
@@ -253,6 +254,7 @@ export default function PracticePage({ params }: { params: { subject: string } }
               <span>
                 Question {session.currentIndex + 1} / {session.questionIds.length}
               </span>
+              <span>{answeredCount} answered</span>
               <button
                 onClick={() => createSession(session.count)}
                 className="rounded-md border border-white/[0.06] bg-surface2 px-3 py-2 font-mono text-[10px] text-zinc-400 transition hover:border-white/[0.12] hover:text-zinc-100"
