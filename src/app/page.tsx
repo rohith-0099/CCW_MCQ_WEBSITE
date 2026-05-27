@@ -1,11 +1,16 @@
 import Link from "next/link";
-import { SUBJECT_LABELS } from "@/data/questions";
+import { QUESTIONS, SUBJECT_LABELS } from "@/data/questions";
 import { SUBJECTS } from "@/lib/question-utils";
 
 const cardBase =
   "group flex items-center gap-3 border-b border-white/[0.06] px-4 py-3.5 transition last:border-b-0 hover:bg-surface2";
 
 export default function HomePage() {
+  const subjectCounts = SUBJECTS.reduce<Record<string, number>>((acc, subject) => {
+    acc[subject] = QUESTIONS.filter((question) => question.subject === subject).length;
+    return acc;
+  }, {});
+
   return (
     <main className="min-h-screen bg-background px-[22px] py-12">
       <div className="mx-auto flex w-full max-w-md flex-col">
@@ -49,7 +54,7 @@ export default function HomePage() {
                     {SUBJECT_LABELS[subject]}
                   </span>
                   <span className="mt-0.5 block text-xs text-zinc-600">
-                    Practice
+                    {subjectCounts[subject]} questions
                   </span>
                 </span>
                 <span className="font-mono text-sm text-zinc-600 transition group-hover:text-zinc-100">
