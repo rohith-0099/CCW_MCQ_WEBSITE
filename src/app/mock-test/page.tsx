@@ -159,6 +159,7 @@ export default function MockTestPage() {
     return {
       correct,
       wrong: session.questionIds.length - correct,
+      percent: Math.round((correct / session.questionIds.length) * 100),
     };
   }, [session, questionMap]);
 
@@ -217,7 +218,8 @@ export default function MockTestPage() {
                 <div>
                   <h2 className="text-xl font-medium">Results</h2>
                   <p className="mt-1 text-sm text-zinc-300">
-                    Score: {scoreSummary?.correct} / {TOTAL_QUESTIONS}
+                    Score: {scoreSummary?.correct} / {TOTAL_QUESTIONS} (
+                    {scoreSummary?.percent}%)
                   </p>
                   <p className="text-sm text-zinc-600">
                     Correct: {scoreSummary?.correct} • Wrong: {scoreSummary?.wrong}
