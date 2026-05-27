@@ -308,9 +308,17 @@ export default function MockTestPage() {
               <span>
                 Question {session.currentIndex + 1} / {session.questionIds.length}
               </span>
-              <span className="rounded-md border border-white/[0.06] bg-surface2 px-3 py-2 font-mono text-[10px] text-zinc-400">
-                {formatTime(timeLeftMs)} remaining
-              </span>
+              <div className="flex items-center gap-2">
+                <span className="rounded-md border border-white/[0.06] bg-surface2 px-3 py-2 font-mono text-[10px] text-zinc-400">
+                  {formatTime(timeLeftMs)} remaining
+                </span>
+                <button
+                  onClick={startNewSession}
+                  className="rounded-md border border-white/[0.06] bg-panel px-3 py-2 font-mono text-[10px] text-zinc-400 transition hover:border-white/[0.12] hover:text-zinc-100"
+                >
+                  Restart
+                </button>
+              </div>
             </div>
 
             <div className="mt-3 h-0.5 w-full overflow-hidden rounded-sm bg-white/[0.06]">
