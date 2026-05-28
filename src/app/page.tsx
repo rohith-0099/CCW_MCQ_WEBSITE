@@ -58,6 +58,9 @@ export default function HomePage() {
             </p>
             <p className="font-mono text-[10px] text-zinc-600">{SUBJECTS.length}</p>
           </div>
+          <p className="mb-3 text-xs text-zinc-500">
+            Pick a topic to start a focused practice run.
+          </p>
 
           <div className="overflow-hidden rounded-xl border border-white/[0.06] bg-panel">
             {SUBJECTS.map((subject) => (
