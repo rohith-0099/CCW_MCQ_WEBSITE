@@ -38,6 +38,17 @@ export default function HomePage() {
             Pick a subject to drill down, or jump into a full-length mock test.
             Each session is freshly randomized.
           </p>
+          <div className="mt-5 flex flex-wrap gap-2 text-[11px] font-medium uppercase tracking-[0.1em] text-zinc-500">
+            <span className="rounded-full border border-white/[0.06] bg-panel px-3 py-1">
+              {SUBJECTS.length} subjects
+            </span>
+            <span className="rounded-full border border-white/[0.06] bg-panel px-3 py-1">
+              {QUESTIONS.length} questions
+            </span>
+            <span className="rounded-full border border-white/[0.06] bg-panel px-3 py-1">
+              randomized sets
+            </span>
+          </div>
         </section>
 
         <section className="mb-9">
