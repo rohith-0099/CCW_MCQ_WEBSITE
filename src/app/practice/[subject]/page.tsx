@@ -149,6 +149,9 @@ export default function PracticePage({ params }: { params: { subject: string } }
         return total;
       }, 0)
     : 0;
+  const firstUnansweredIndex = session
+    ? session.questionIds.findIndex((id) => session.answers[id] === undefined)
+    : -1;
   const elapsedMinutes = session
     ? Math.max(0, Math.floor((Date.now() - session.startedAt) / 60000))
     : 0;
@@ -357,6 +360,14 @@ export default function PracticePage({ params }: { params: { subject: string } }
               >
                 {showExplanation ? "Hide" : "Show"} explanation
               </button>
+              {firstUnansweredIndex >= 0 && (
+                <button
+                  onClick={() => updateSession({ currentIndex: firstUnansweredIndex })}
+                  className="rounded-md border border-white/[0.06] bg-surface2 px-3 py-2 font-mono text-[10px] text-zinc-400 transition hover:border-white/[0.12] hover:text-zinc-100"
+                >
+                  First unanswered
+                </button>
+              )}
               <button
                 onClick={() =>
                   updateSession({
