@@ -335,6 +335,9 @@ export default function PracticePage({ params }: { params: { subject: string } }
                 </p>
               </div>
             )}
+            {selectedAnswer !== undefined && (
+              <p className="mt-3 text-xs text-zinc-500">Answer saved.</p>
+            )}
 
             <div className="mt-5 flex items-center justify-between gap-3">
               <p className="text-xs text-zinc-500">
