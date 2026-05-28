@@ -147,6 +147,9 @@ export default function PracticePage({ params }: { params: { subject: string } }
         return total;
       }, 0)
     : 0;
+  const elapsedMinutes = session
+    ? Math.max(0, Math.floor((Date.now() - session.startedAt) / 60000))
+    : 0;
 
   const renderOption = (question: Question, optionIndex: number) => {
     const isCorrect = optionIndex === question.answer;
@@ -265,6 +268,7 @@ export default function PracticePage({ params }: { params: { subject: string } }
               </span>
               <span>{answeredCount} answered</span>
               <span>{session.questionIds.length - answeredCount} remaining</span>
+              <span>{elapsedMinutes} min</span>
               <button
                 onClick={() => createSession(session.count)}
                 className="rounded-md border border-white/[0.06] bg-surface2 px-3 py-2 font-mono text-[10px] text-zinc-400 transition hover:border-white/[0.12] hover:text-zinc-100"
