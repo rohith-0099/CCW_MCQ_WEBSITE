@@ -372,6 +372,15 @@ export default function PracticePage({ params }: { params: { subject: string } }
               </button>
               <button
                 onClick={() =>
+                  updateSession({ currentIndex: session.questionIds.length - 1 })
+                }
+                disabled={session.currentIndex >= session.questionIds.length - 1}
+                className="rounded-[10px] border border-white/[0.06] bg-panel px-4 py-3.5 text-sm font-medium text-zinc-100 transition hover:border-white/[0.12] disabled:cursor-not-allowed disabled:opacity-40"
+              >
+                Last
+              </button>
+              <button
+                onClick={() =>
                   updateSession({
                     currentIndex: Math.min(
                       session.currentIndex + 1,
