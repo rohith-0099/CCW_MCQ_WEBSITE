@@ -291,7 +291,7 @@ export default function PracticePage({ params }: { params: { subject: string } }
           </div>
         ) : (
           <section className="rounded-xl border border-white/[0.06] bg-panel p-4 sm:p-5">
-            <div className="flex items-center justify-between gap-3 text-[11px] font-medium uppercase tracking-[0.1em] text-zinc-600">
+            <div className="flex flex-wrap items-center justify-between gap-3 text-[11px] font-medium uppercase tracking-[0.1em] text-zinc-600">
               <span>
                 Question {session.currentIndex + 1} / {session.questionIds.length}
               </span>
@@ -315,7 +315,6 @@ export default function PracticePage({ params }: { params: { subject: string } }
             <p className="mt-2 text-xs text-zinc-500">
               Progress: {Math.round(progress)}%
             </p>
-            <p className="mt-2 text-xs text-zinc-500">Progress: {progressLabel}%</p>
 
             <h2 className="mt-5 text-[21px] font-medium leading-[1.32] text-zinc-100">
               {currentQuestion.stem}
@@ -364,68 +363,72 @@ export default function PracticePage({ params }: { params: { subject: string } }
               <p className="mt-3 text-xs text-zinc-500">Answer saved.</p>
             )}
 
-            <div className="mt-5 flex items-center justify-between gap-3">
-              <p className="text-xs text-zinc-500">
-                Correct so far: {correctSoFar} / {answeredCount}
-              </p>
-              <p className="text-xs text-zinc-500">
-                Accuracy: {answeredCount ? Math.round((correctSoFar / answeredCount) * 100) : 0}%
-              </p>
-              <button
-                onClick={() => setShowExplanation((prev) => !prev)}
-                className="rounded-md border border-white/[0.06] bg-surface2 px-3 py-2 font-mono text-[10px] text-zinc-400 transition hover:border-white/[0.12] hover:text-zinc-100"
-              >
-                {showExplanation ? "Hide" : "Show"} explanation
-              </button>
-              {firstUnansweredIndex >= 0 && (
+            <div className="mt-5 flex flex-col gap-3">
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <p className="text-xs text-zinc-500">
+                  Correct so far: {correctSoFar} / {answeredCount}
+                </p>
+                <p className="text-xs text-zinc-500">
+                  Accuracy: {answeredCount ? Math.round((correctSoFar / answeredCount) * 100) : 0}%
+                </p>
                 <button
-                  onClick={() => updateSession({ currentIndex: firstUnansweredIndex })}
+                  onClick={() => setShowExplanation((prev) => !prev)}
                   className="rounded-md border border-white/[0.06] bg-surface2 px-3 py-2 font-mono text-[10px] text-zinc-400 transition hover:border-white/[0.12] hover:text-zinc-100"
                 >
-                  First unanswered
+                  {showExplanation ? "Hide" : "Show"} explanation
                 </button>
-              )}
-              <button
-                onClick={() =>
-                  updateSession({
-                    currentIndex: Math.max(session.currentIndex - 1, 0),
-                  })
-                }
-                disabled={session.currentIndex === 0}
-                className="rounded-[10px] border border-white/[0.06] bg-panel px-4 py-3.5 text-sm font-medium text-zinc-100 transition hover:border-white/[0.12] disabled:cursor-not-allowed disabled:opacity-40"
-              >
-                Previous
-              </button>
-              <button
-                onClick={() => updateSession({ currentIndex: 0 })}
-                disabled={session.currentIndex === 0}
-                className="rounded-[10px] border border-white/[0.06] bg-panel px-4 py-3.5 text-sm font-medium text-zinc-100 transition hover:border-white/[0.12] disabled:cursor-not-allowed disabled:opacity-40"
-              >
-                First
-              </button>
-              <button
-                onClick={() =>
-                  updateSession({ currentIndex: session.questionIds.length - 1 })
-                }
-                disabled={session.currentIndex >= session.questionIds.length - 1}
-                className="rounded-[10px] border border-white/[0.06] bg-panel px-4 py-3.5 text-sm font-medium text-zinc-100 transition hover:border-white/[0.12] disabled:cursor-not-allowed disabled:opacity-40"
-              >
-                Last
-              </button>
-              <button
-                onClick={() =>
-                  updateSession({
-                    currentIndex: Math.min(
-                      session.currentIndex + 1,
-                      session.questionIds.length - 1
-                    ),
-                  })
-                }
-                disabled={session.currentIndex >= session.questionIds.length - 1}
-                className="rounded-[10px] bg-accent px-5 py-3.5 text-sm font-semibold text-accentInk transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40"
-              >
-                Next
-              </button>
+                {firstUnansweredIndex >= 0 && (
+                  <button
+                    onClick={() => updateSession({ currentIndex: firstUnansweredIndex })}
+                    className="rounded-md border border-white/[0.06] bg-surface2 px-3 py-2 font-mono text-[10px] text-zinc-400 transition hover:border-white/[0.12] hover:text-zinc-100"
+                  >
+                    First unanswered
+                  </button>
+                )}
+              </div>
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <button
+                  onClick={() =>
+                    updateSession({
+                      currentIndex: Math.max(session.currentIndex - 1, 0),
+                    })
+                  }
+                  disabled={session.currentIndex === 0}
+                  className="rounded-[10px] border border-white/[0.06] bg-panel px-4 py-3.5 text-sm font-medium text-zinc-100 transition hover:border-white/[0.12] disabled:cursor-not-allowed disabled:opacity-40"
+                >
+                  Previous
+                </button>
+                <button
+                  onClick={() => updateSession({ currentIndex: 0 })}
+                  disabled={session.currentIndex === 0}
+                  className="rounded-[10px] border border-white/[0.06] bg-panel px-4 py-3.5 text-sm font-medium text-zinc-100 transition hover:border-white/[0.12] disabled:cursor-not-allowed disabled:opacity-40"
+                >
+                  First
+                </button>
+                <button
+                  onClick={() =>
+                    updateSession({ currentIndex: session.questionIds.length - 1 })
+                  }
+                  disabled={session.currentIndex >= session.questionIds.length - 1}
+                  className="rounded-[10px] border border-white/[0.06] bg-panel px-4 py-3.5 text-sm font-medium text-zinc-100 transition hover:border-white/[0.12] disabled:cursor-not-allowed disabled:opacity-40"
+                >
+                  Last
+                </button>
+                <button
+                  onClick={() =>
+                    updateSession({
+                      currentIndex: Math.min(
+                        session.currentIndex + 1,
+                        session.questionIds.length - 1
+                      ),
+                    })
+                  }
+                  disabled={session.currentIndex >= session.questionIds.length - 1}
+                  className="rounded-[10px] bg-accent px-5 py-3.5 text-sm font-semibold text-accentInk transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40"
+                >
+                  Next
+                </button>
+              </div>
             </div>
           </section>
         )}
