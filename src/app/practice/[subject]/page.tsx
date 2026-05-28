@@ -207,12 +207,19 @@ export default function PracticePage({ params }: { params: { subject: string } }
                 {SUBJECT_LABELS[subject]}
               </h1>
             </div>
-            <Link
-              href="/"
-              className="rounded-lg border border-white/[0.06] px-3 py-2 text-sm text-zinc-400 transition hover:border-white/[0.12] hover:text-zinc-100"
-            >
-              Home
-            </Link>
+            <div className="flex items-center gap-2">
+              {session && (
+                <span className="rounded-full border border-white/[0.06] bg-panel px-2.5 py-1 font-mono text-[10px] text-zinc-500">
+                  autosaved
+                </span>
+              )}
+              <Link
+                href="/"
+                className="rounded-lg border border-white/[0.06] px-3 py-2 text-sm text-zinc-400 transition hover:border-white/[0.12] hover:text-zinc-100"
+              >
+                Home
+              </Link>
+            </div>
           </div>
 
           <div className="rounded-xl border border-white/[0.06] bg-panel p-4">
