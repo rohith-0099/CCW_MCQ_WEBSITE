@@ -354,6 +354,9 @@ export default function PracticePage({ params }: { params: { subject: string } }
               <p className="text-xs text-zinc-500">
                 Correct so far: {correctSoFar} / {answeredCount}
               </p>
+              <p className="text-xs text-zinc-500">
+                Accuracy: {answeredCount ? Math.round((correctSoFar / answeredCount) * 100) : 0}%
+              </p>
               <button
                 onClick={() => setShowExplanation((prev) => !prev)}
                 className="rounded-md border border-white/[0.06] bg-surface2 px-3 py-2 font-mono text-[10px] text-zinc-400 transition hover:border-white/[0.12] hover:text-zinc-100"
