@@ -103,6 +103,16 @@ export default function HomePage() {
             <p className="mt-2.5 text-[13px] leading-5 text-zinc-400">
               Subject order aligned with the paper.
             </p>
+            <div className="mt-3 flex flex-wrap gap-2 text-[10px] font-medium uppercase tracking-[0.1em] text-zinc-500">
+              {SUBJECTS.map((subject) => (
+                <span
+                  key={subject}
+                  className="rounded-full border border-white/[0.06] bg-surface2 px-2.5 py-1"
+                >
+                  {subject}
+                </span>
+              ))}
+            </div>
             <div className="mt-4 flex gap-2">
               <span className="rounded-md border border-white/[0.06] bg-surface2 px-2.5 py-1.5 font-mono text-[11px] text-zinc-400">
                 50 questions
