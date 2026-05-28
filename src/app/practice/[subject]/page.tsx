@@ -278,9 +278,9 @@ export default function PracticePage({ params }: { params: { subject: string } }
               <span>
                 Question {session.currentIndex + 1} / {session.questionIds.length}
               </span>
-              <span>{answeredCount} answered</span>
-              <span>{session.questionIds.length - answeredCount} remaining</span>
-              <span>{elapsedMinutes} min</span>
+              <span>Answered: {answeredCount}</span>
+              <span>Remaining: {session.questionIds.length - answeredCount}</span>
+              <span>Time: {elapsedMinutes} min</span>
               <button
                 onClick={() => createSession(session.count)}
                 className="rounded-md border border-white/[0.06] bg-surface2 px-3 py-2 font-mono text-[10px] text-zinc-400 transition hover:border-white/[0.12] hover:text-zinc-100"
