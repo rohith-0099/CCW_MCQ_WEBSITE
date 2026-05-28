@@ -239,6 +239,11 @@ export default function MockTestPage() {
               Start the mock test to get a randomized set of questions in the
               official subject order.
             </p>
+            <ul className="mt-3 space-y-2 text-xs text-zinc-500">
+              <li>Allocate 60 minutes for the full run.</li>
+              <li>Use Restart if you want a fresh set.</li>
+              <li>Review explanations after submission.</li>
+            </ul>
             <div className="mt-4 flex flex-wrap gap-3">
               <button
                 onClick={startNewSession}
