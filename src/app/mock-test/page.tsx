@@ -191,12 +191,27 @@ export default function MockTestPage() {
                 Full-length MCQ Exam
               </h1>
             </div>
-            <Link
-              href="/"
-              className="rounded-lg border border-white/[0.06] px-3 py-2 text-sm text-zinc-400 transition hover:border-white/[0.12] hover:text-zinc-100"
-            >
-              Home
-            </Link>
+            <div className="flex items-center gap-2">
+              {session && (
+                <button
+                  onClick={() => {
+                    localStorage.removeItem(SESSION_KEY);
+                    setSession(null);
+                    setSubmitted(false);
+                    setTimeLeftMs(DURATION_MS);
+                  }}
+                  className="rounded-md border border-white/[0.06] bg-panel px-3 py-2 text-sm text-zinc-400 transition hover:border-white/[0.12] hover:text-zinc-100"
+                >
+                  Clear
+                </button>
+              )}
+              <Link
+                href="/"
+                className="rounded-lg border border-white/[0.06] px-3 py-2 text-sm text-zinc-400 transition hover:border-white/[0.12] hover:text-zinc-100"
+              >
+                Home
+              </Link>
+            </div>
           </div>
           <p className="text-sm text-zinc-400">
             50 questions • 10 per subject • 1 hour timer
