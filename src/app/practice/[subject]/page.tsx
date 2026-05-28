@@ -258,6 +258,7 @@ export default function PracticePage({ params }: { params: { subject: string } }
                 <p className="text-sm text-zinc-300">
                   {session.questionIds.length} questions • {session.currentIndex + 1} answered
                 </p>
+                <p className="text-xs text-zinc-500">Started {elapsedMinutes} min ago</p>
               </div>
               <button
                 onClick={clearSession}
