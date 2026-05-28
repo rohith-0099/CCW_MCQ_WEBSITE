@@ -18,8 +18,13 @@ export default function HomePage() {
           <p className="text-[11px] font-medium uppercase tracking-[0.1em] text-zinc-400">
             ADT 308
           </p>
-          <div className="flex h-6 w-6 items-center justify-center rounded-full border border-white/[0.06] bg-panel font-mono text-[10px] text-zinc-400">
-            A
+          <div className="flex items-center gap-2">
+            <span className="rounded-full border border-white/[0.06] bg-panel px-2.5 py-1 font-mono text-[10px] text-zinc-400">
+              {QUESTIONS.length} Qs
+            </span>
+            <div className="flex h-6 w-6 items-center justify-center rounded-full border border-white/[0.06] bg-panel font-mono text-[10px] text-zinc-400">
+              A
+            </div>
           </div>
         </header>
 
