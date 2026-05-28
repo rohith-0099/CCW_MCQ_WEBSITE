@@ -447,6 +447,9 @@ export default function MockTestPage() {
                     </button>
                   </div>
                 </div>
+                <p className="mt-3 text-xs text-zinc-500">
+                  The test auto-submits when the timer ends.
+                </p>
               </div>
             )}
           </section>
