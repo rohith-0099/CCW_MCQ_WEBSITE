@@ -120,6 +120,9 @@ export default function HomePage() {
               <span className="rounded-md border border-white/[0.06] bg-surface2 px-2.5 py-1.5 font-mono text-[11px] text-zinc-400">
                 1 hour
               </span>
+              <span className="rounded-md border border-white/[0.06] bg-surface2 px-2.5 py-1.5 font-mono text-[11px] text-zinc-400">
+                5 subjects
+              </span>
             </div>
             <div className="mt-4 flex items-center justify-between border-t border-white/[0.06] pt-4">
               <span className="text-[13px] font-medium text-zinc-100">
