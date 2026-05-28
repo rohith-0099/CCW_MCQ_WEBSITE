@@ -138,6 +138,7 @@ export default function PracticePage({ params }: { params: { subject: string } }
   const progress = session
     ? ((session.currentIndex + 1) / session.questionIds.length) * 100
     : 0;
+  const progressLabel = session ? Math.round(progress) : 0;
   const answeredCount = session ? Object.keys(session.answers).length : 0;
   const correctSoFar = session
     ? Object.entries(session.answers).reduce((total, [id, answer]) => {
@@ -284,6 +285,7 @@ export default function PracticePage({ params }: { params: { subject: string } }
                 style={{ width: `${progress}%` }}
               />
             </div>
+            <p className="mt-2 text-xs text-zinc-500">Progress: {progressLabel}%</p>
 
             <h2 className="mt-5 text-[21px] font-medium leading-[1.32] text-zinc-100">
               {currentQuestion.stem}
