@@ -201,6 +201,14 @@ export default function MockTestPage() {
               )}
               {session && (
                 <button
+                  onClick={() => updateSession({ answers: {}, currentIndex: 0 })}
+                  className="rounded-md border border-white/[0.06] bg-panel px-3 py-2 text-sm text-zinc-400 transition hover:border-white/[0.12] hover:text-zinc-100"
+                >
+                  Reset answers
+                </button>
+              )}
+              {session && (
+                <button
                   onClick={() => {
                     localStorage.removeItem(SESSION_KEY);
                     setSession(null);
