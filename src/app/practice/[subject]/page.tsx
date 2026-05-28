@@ -300,6 +300,7 @@ export default function PracticePage({ params }: { params: { subject: string } }
             <h2 className="mt-5 text-[21px] font-medium leading-[1.32] text-zinc-100">
               {currentQuestion.stem}
             </h2>
+            <p className="mt-2 text-xs text-zinc-500">Question ID: {currentQuestion.id}</p>
             <div className="mt-3 flex flex-wrap gap-2 text-[10px] font-medium uppercase tracking-[0.1em] text-zinc-500">
               {currentQuestion.module && (
                 <span className="rounded-full border border-white/[0.06] bg-surface2 px-2.5 py-1">
