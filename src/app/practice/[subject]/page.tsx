@@ -295,6 +295,9 @@ export default function PracticePage({ params }: { params: { subject: string } }
                 style={{ width: `${progress}%` }}
               />
             </div>
+            <p className="mt-2 text-xs text-zinc-500">
+              Progress: {Math.round(progress)}%
+            </p>
             <p className="mt-2 text-xs text-zinc-500">Progress: {progressLabel}%</p>
 
             <h2 className="mt-5 text-[21px] font-medium leading-[1.32] text-zinc-100">
