@@ -148,6 +148,10 @@ export default function HomePage() {
             </div>
           </Link>
         </section>
+
+        <footer className="mt-10 border-t border-white/[0.06] pt-6 text-xs text-zinc-500">
+          Built for focused ADT 308 practice sessions.
+        </footer>
       </div>
     </main>
   );
