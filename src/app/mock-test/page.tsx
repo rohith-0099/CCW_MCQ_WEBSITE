@@ -448,6 +448,9 @@ export default function MockTestPage() {
                     );
                   })}
                 </div>
+                {selectedAnswer !== undefined && (
+                  <p className="mt-3 text-xs text-zinc-500">Answer saved.</p>
+                )}
 
                 <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
                   <button
