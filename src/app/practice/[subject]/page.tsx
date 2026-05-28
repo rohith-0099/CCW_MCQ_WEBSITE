@@ -336,6 +336,11 @@ export default function PracticePage({ params }: { params: { subject: string } }
                 <p className="mt-2 text-sm leading-[1.55] text-zinc-400">
                   {currentQuestion.explanation}
                 </p>
+                {currentQuestion.basis && (
+                  <p className="mt-2 text-xs text-zinc-500">
+                    Source: {currentQuestion.basis}
+                  </p>
+                )}
               </div>
             )}
             {selectedAnswer !== undefined && (
