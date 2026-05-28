@@ -56,7 +56,12 @@ export default function HomePage() {
             <p className="text-[11px] font-medium uppercase tracking-[0.1em] text-zinc-400">
               Subjects
             </p>
-            <p className="font-mono text-[10px] text-zinc-600">{SUBJECTS.length}</p>
+            <div className="flex items-center gap-2 font-mono text-[10px] text-zinc-600">
+              <span>{SUBJECTS.length}</span>
+              <span className="rounded-full border border-white/[0.06] bg-panel px-2 py-0.5 text-zinc-500">
+                {QUESTIONS.length} total
+              </span>
+            </div>
           </div>
           <p className="mb-3 text-xs text-zinc-500">
             Pick a topic to start a focused practice run.
