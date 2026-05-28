@@ -181,7 +181,7 @@ export default function MockTestPage() {
   }
 
   return (
-    <main className="min-h-screen bg-background px-[22px] py-8 text-zinc-100">
+    <main id="top" className="min-h-screen bg-background px-[22px] py-8 text-zinc-100">
       <div className="mx-auto flex w-full max-w-md flex-col gap-5">
         <header className="sticky top-0 z-10 -mx-[22px] flex flex-col gap-2 border-b border-white/[0.06] bg-background px-[22px] pb-4 pt-4">
           <div className="flex items-center justify-between">
@@ -261,6 +261,14 @@ export default function MockTestPage() {
                 >
                   Start New Mock Test
                 </button>
+              </div>
+              <div className="mt-4 flex justify-end">
+                <a
+                  href="#top"
+                  className="text-xs text-zinc-500 transition hover:text-zinc-300"
+                >
+                  Back to top
+                </a>
               </div>
             </div>
 
