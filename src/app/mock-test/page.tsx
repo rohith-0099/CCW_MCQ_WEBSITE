@@ -321,6 +321,7 @@ export default function MockTestPage() {
                     <h3 className="mt-4 text-[15px] font-medium leading-[1.45] text-zinc-100">
                       {question.stem}
                     </h3>
+                    <p className="mt-2 text-xs text-zinc-500">Question ID: {question.id}</p>
                     <div className="mt-4 grid gap-2 text-sm">
                       {question.options.map((option, optionIndex) => {
                         const isAnswer = optionIndex === question.answer;
