@@ -279,6 +279,9 @@ export default function MockTestPage() {
                       <span>
                         {index + 1}. {question.subject}
                       </span>
+                      <span className="rounded-full border border-white/[0.06] bg-surface2 px-2 py-0.5 text-[10px] text-zinc-500">
+                        {SUBJECT_LABELS[question.subject]}
+                      </span>
                       <span
                         className={`rounded-md border px-2 py-1 text-[10px] ${
                           isCorrect
