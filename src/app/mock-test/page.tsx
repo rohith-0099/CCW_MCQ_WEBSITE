@@ -146,6 +146,9 @@ export default function MockTestPage() {
     ? session?.answers[currentQuestion.id]
     : undefined;
   const answeredCount = session ? Object.keys(session.answers).length : 0;
+  const elapsedMinutes = session
+    ? Math.max(0, Math.floor((Date.now() - session.startedAt) / 60000))
+    : 0;
 
   const scoreSummary = useMemo(() => {
     if (!session) return null;
@@ -312,6 +315,7 @@ export default function MockTestPage() {
                 Question {session.currentIndex + 1} / {session.questionIds.length}
               </span>
               <span>{answeredCount} answered</span>
+              <span>{elapsedMinutes} min</span>
               <div className="flex items-center gap-2">
                 <span className="rounded-md border border-white/[0.06] bg-surface2 px-3 py-2 font-mono text-[10px] text-zinc-400">
                   {formatTime(timeLeftMs)} remaining
