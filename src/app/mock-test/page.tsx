@@ -330,6 +330,11 @@ export default function MockTestPage() {
                     <p className="mt-2 text-sm leading-[1.55] text-zinc-400">
                       {question.explanation}
                     </p>
+                    {question.basis && (
+                      <p className="mt-2 text-xs text-zinc-500">
+                        Source: {question.basis}
+                      </p>
+                    )}
                   </div>
                 );
               })}
