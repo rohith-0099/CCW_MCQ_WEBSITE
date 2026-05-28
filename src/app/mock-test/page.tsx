@@ -195,6 +195,11 @@ export default function MockTestPage() {
             </div>
             <div className="flex items-center gap-2">
               {session && (
+                <span className="rounded-full border border-white/[0.06] bg-panel px-2.5 py-1 font-mono text-[10px] text-zinc-500">
+                  autosaved
+                </span>
+              )}
+              {session && (
                 <button
                   onClick={() => {
                     localStorage.removeItem(SESSION_KEY);
