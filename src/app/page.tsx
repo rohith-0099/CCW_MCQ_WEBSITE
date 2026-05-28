@@ -84,6 +84,17 @@ export default function HomePage() {
           </div>
         </section>
 
+        <section className="mb-9 rounded-xl border border-white/[0.06] bg-panel p-4">
+          <p className="text-[11px] font-medium uppercase tracking-[0.1em] text-zinc-400">
+            Practice tips
+          </p>
+          <ul className="mt-3 space-y-2 text-xs text-zinc-500">
+            <li>Start with 10-15 question bursts to warm up.</li>
+            <li>Use mock mode to simulate the full exam flow.</li>
+            <li>Review explanations after each attempt.</li>
+          </ul>
+        </section>
+
         <section>
           <p className="mb-3.5 text-[11px] font-medium uppercase tracking-[0.1em] text-zinc-400">
             Mock test
