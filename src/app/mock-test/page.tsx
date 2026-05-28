@@ -167,6 +167,8 @@ export default function MockTestPage() {
       timeSpentMs: session.completedAt
         ? Math.max(0, session.completedAt - session.startedAt)
         : 0,
+      skipped: session.questionIds.filter((id) => session.answers[id] === undefined)
+        .length,
     };
   }, [session, questionMap]);
 
@@ -247,7 +249,7 @@ export default function MockTestPage() {
                     Time taken: {formatTime(scoreSummary?.timeSpentMs ?? 0)}
                   </p>
                   <p className="text-sm text-zinc-600">
-                    Correct: {scoreSummary?.correct} • Wrong: {scoreSummary?.wrong}
+                    Correct: {scoreSummary?.correct} • Wrong: {scoreSummary?.wrong} • Skipped: {scoreSummary?.skipped}
                   </p>
                 </div>
                 <span className="rounded-full border border-white/[0.06] bg-surface2 px-3 py-1 text-[11px] text-zinc-400">
