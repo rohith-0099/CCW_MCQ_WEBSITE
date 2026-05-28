@@ -92,6 +92,11 @@ export default function HomePage() {
             href="/mock-test"
             className="block rounded-xl border border-white/[0.06] bg-panel p-5 transition hover:border-white/[0.12]"
           >
+            <div className="flex items-center justify-between">
+              <span className="rounded-full border border-white/[0.06] bg-surface2 px-2.5 py-1 font-mono text-[10px] text-zinc-400">
+                exam mode
+              </span>
+            </div>
             <h2 className="text-xl font-medium leading-tight text-zinc-100">
               Full-length exam simulation
             </h2>
