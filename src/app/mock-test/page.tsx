@@ -250,6 +250,9 @@ export default function MockTestPage() {
                     Correct: {scoreSummary?.correct} • Wrong: {scoreSummary?.wrong}
                   </p>
                 </div>
+                <span className="rounded-full border border-white/[0.06] bg-surface2 px-3 py-1 text-[11px] text-zinc-400">
+                  Accuracy: {scoreSummary?.percent}%
+                </span>
                 <button
                   onClick={startNewSession}
                   className="w-full rounded-[10px] border border-white/[0.06] bg-panel px-4 py-3.5 text-sm font-medium text-zinc-100 transition hover:border-white/[0.12] sm:w-auto"
