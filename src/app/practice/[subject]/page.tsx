@@ -206,6 +206,9 @@ export default function PracticePage({ params }: { params: { subject: string } }
               <h1 className="text-xl font-medium leading-tight">
                 {SUBJECT_LABELS[subject]}
               </h1>
+              <p className="mt-1 text-xs text-zinc-500">
+                {subjectQuestions.length} questions available
+              </p>
             </div>
             <div className="flex items-center gap-2">
               {session && (
