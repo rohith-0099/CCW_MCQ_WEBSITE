@@ -260,12 +260,20 @@ export default function PracticePage({ params }: { params: { subject: string } }
                 </p>
                 <p className="text-xs text-zinc-500">Started {elapsedMinutes} min ago</p>
               </div>
-              <button
-                onClick={clearSession}
-                className="rounded-md border border-white/[0.06] bg-surface2 px-3 py-2 font-mono text-[10px] text-zinc-400 transition hover:border-white/[0.12] hover:text-zinc-100"
-              >
-                Clear
-              </button>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => updateSession({ answers: {}, currentIndex: 0 })}
+                  className="rounded-md border border-white/[0.06] bg-surface2 px-3 py-2 font-mono text-[10px] text-zinc-400 transition hover:border-white/[0.12] hover:text-zinc-100"
+                >
+                  Reset answers
+                </button>
+                <button
+                  onClick={clearSession}
+                  className="rounded-md border border-white/[0.06] bg-surface2 px-3 py-2 font-mono text-[10px] text-zinc-400 transition hover:border-white/[0.12] hover:text-zinc-100"
+                >
+                  Clear
+                </button>
+              </div>
             </div>
           )}
         </header>
