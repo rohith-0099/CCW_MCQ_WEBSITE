@@ -348,6 +348,9 @@ export default function MockTestPage() {
                 }}
               />
             </div>
+            <p className="mt-2 text-xs text-zinc-500">
+              Progress: {Math.round(((session.currentIndex + 1) / session.questionIds.length) * 100)}%
+            </p>
 
             {currentQuestion && (
               <div className="mt-6">
