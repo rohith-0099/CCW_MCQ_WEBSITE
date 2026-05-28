@@ -283,6 +283,11 @@ export default function PracticePage({ params }: { params: { subject: string } }
             <p className="text-sm text-zinc-400">
               Start a practice session to load questions.
             </p>
+            <ul className="mt-3 space-y-2 text-xs text-zinc-500">
+              <li>Select a question count to begin.</li>
+              <li>Answering reveals explanations instantly.</li>
+              <li>Your progress is autosaved per subject.</li>
+            </ul>
           </div>
         ) : (
           <section className="rounded-xl border border-white/[0.06] bg-panel p-4 sm:p-5">
