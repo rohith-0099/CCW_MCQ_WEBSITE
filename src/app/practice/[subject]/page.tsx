@@ -36,6 +36,7 @@ export default function PracticePage({ params }: { params: { subject: string } }
 
   const [session, setSession] = useState<PracticeSession | null>(null);
   const [loading, setLoading] = useState(true);
+  const [showExplanation, setShowExplanation] = useState(true);
 
   const availableCounts = useMemo(() => {
     if (!isValidSubject) {
@@ -294,7 +295,7 @@ export default function PracticePage({ params }: { params: { subject: string } }
               )}
             </div>
 
-            {selectedAnswer !== undefined && (
+            {selectedAnswer !== undefined && showExplanation && (
               <div className="mt-5 rounded-[10px] border border-white/[0.06] bg-panel p-4">
                 <p className="text-sm font-medium text-correct">
                   Correct answer: {currentQuestion.options[currentQuestion.answer]}
@@ -309,6 +310,12 @@ export default function PracticePage({ params }: { params: { subject: string } }
               <p className="text-xs text-zinc-500">
                 Correct so far: {correctSoFar} / {answeredCount}
               </p>
+              <button
+                onClick={() => setShowExplanation((prev) => !prev)}
+                className="rounded-md border border-white/[0.06] bg-surface2 px-3 py-2 font-mono text-[10px] text-zinc-400 transition hover:border-white/[0.12] hover:text-zinc-100"
+              >
+                {showExplanation ? "Hide" : "Show"} explanation
+              </button>
               <button
                 onClick={() =>
                   updateSession({
