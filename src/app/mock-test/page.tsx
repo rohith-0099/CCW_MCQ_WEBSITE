@@ -164,6 +164,9 @@ export default function MockTestPage() {
       correct,
       wrong: session.questionIds.length - correct,
       percent: Math.round((correct / session.questionIds.length) * 100),
+      timeSpentMs: session.completedAt
+        ? Math.max(0, session.completedAt - session.startedAt)
+        : 0,
     };
   }, [session, questionMap]);
 
@@ -224,6 +227,9 @@ export default function MockTestPage() {
                   <p className="mt-1 text-sm text-zinc-300">
                     Score: {scoreSummary?.correct} / {TOTAL_QUESTIONS} (
                     {scoreSummary?.percent}%)
+                  </p>
+                  <p className="text-sm text-zinc-500">
+                    Time taken: {formatTime(scoreSummary?.timeSpentMs ?? 0)}
                   </p>
                   <p className="text-sm text-zinc-600">
                     Correct: {scoreSummary?.correct} • Wrong: {scoreSummary?.wrong}
