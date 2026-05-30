@@ -22,8 +22,8 @@ export default function HomePage() {
             <span className="rounded-full border border-white/[0.06] bg-panel px-2.5 py-1 font-mono text-[10px] text-zinc-400">
               {QUESTIONS.length} Qs
             </span>
-            <div className="flex h-6 w-6 items-center justify-center rounded-full border border-white/[0.06] bg-panel font-mono text-[10px] text-zinc-400">
-              A
+            <div className="flex h-7 w-7 items-center justify-center rounded-full border border-white/[0.12] bg-surface2 font-mono text-[11px] font-semibold text-zinc-300">
+              CCW
             </div>
           </div>
         </header>
