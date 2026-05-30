@@ -108,7 +108,7 @@ export default function HomePage() {
           </p>
           <Link
             href="/mock-test"
-            className="block rounded-xl border border-white/[0.06] bg-panel p-5 transition hover:border-white/[0.12]"
+            className="group block rounded-xl border border-white/[0.06] bg-panel p-5 transition-all hover:-translate-y-0.5 hover:border-white/[0.15] hover:bg-white/[0.01] hover:shadow-[0_8px_24px_-4px_rgba(0,0,0,0.4)]"
           >
             <div className="flex items-center justify-between">
               <span className="rounded-full border border-white/[0.06] bg-surface2 px-2.5 py-1 font-mono text-[10px] text-zinc-400">
