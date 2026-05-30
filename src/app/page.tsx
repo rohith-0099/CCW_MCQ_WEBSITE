@@ -29,8 +29,10 @@ export default function HomePage() {
         </header>
 
         <section className="mb-9">
-          <h1 className="text-[32px] font-medium leading-[1.12] text-zinc-100">
-            MCQ practice,
+          <h1 className="text-[32px] font-medium leading-[1.12]">
+            <span className="bg-gradient-to-r from-zinc-100 to-zinc-400 bg-clip-text text-transparent">
+              MCQ practice,
+            </span>
             <br />
             <span className="font-normal text-zinc-400">kept focused.</span>
           </h1>
