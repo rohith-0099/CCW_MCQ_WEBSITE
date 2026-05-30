@@ -151,8 +151,11 @@ export default function HomePage() {
           </Link>
         </section>
 
-        <footer className="mt-10 border-t border-white/[0.06] pt-6 text-xs text-zinc-500">
-          Built for focused ADT 308 practice sessions.
+        <footer className="mt-12 flex items-center justify-between border-t border-white/[0.06] pt-6 text-[11px] font-medium tracking-[0.05em] text-zinc-500">
+          <span>ADT 308 Practice</span>
+          <span className="flex items-center gap-1.5">
+            Built with <span className="text-zinc-400">precision</span>
+          </span>
         </footer>
       </div>
     </main>
